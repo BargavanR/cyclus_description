@@ -1,0 +1,42 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/bargavan/cyclus/build/cyclus_description
+-- Install configuration: ""
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/gazebo.launch.py
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_left.STL
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_right.STL
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_stationary_scene.urdf.xacro
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds/cyclus_empty.world.sdf
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/package_run_dependencies/cyclus_description
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/parent_prefix_path/cyclus_description
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.sh
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.dsv
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.sh
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.dsv
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.bash
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.sh
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.zsh
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.dsv
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.dsv
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/packages/cyclus_description
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig.cmake
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig-version.cmake
+-- Installing: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.xml

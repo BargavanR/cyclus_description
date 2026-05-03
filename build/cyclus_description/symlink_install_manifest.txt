@@ -1,0 +1,32 @@
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/__pycache__/emrac_body.launch.cpython-310.pyc
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/emrac_body.launch.py
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/gazebo.launch.py
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Electro Mechanical Drive Pos 3.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift ACME Drv Shaft Motors Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift ACME Drv Shaft Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Arms Drv Blks Dwn Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Arms Dwn Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Plate Dwn Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Support Blocks Bolts Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Support Blocks Pos 1.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Pos 1-2.stl
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_left.STL
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_right.STL
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_stationary_scene.urdf.xacro
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf.xacro
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds/cyclus_empty.world.sdf
+/home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/package_run_dependencies/cyclus_description
+/home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/parent_prefix_path/cyclus_description
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.sh
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.dsv
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.sh
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.dsv
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.bash
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.sh
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.zsh
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.dsv
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.dsv
+/home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/packages/cyclus_description
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig.cmake
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig-version.cmake
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.xml
