@@ -1,6 +1,6 @@
 <robot name="emrac_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="lift_plate_scale" value="0.001 0.001 0.001" />
-  <xacro:property name="lift_plate_mount_y" value="-0.32" />
+  <xacro:property name="lift_plate_mount_y" value="-1.05" />
   <xacro:property name="lift_plate_travel" value="0.35" />
   <xacro:property name="lift_plate_origin_x" value="-1.90140869140626" />
   <xacro:property name="lift_plate_origin_y" value="-0.40512716674804685857" />
@@ -99,7 +99,7 @@
     </collision>
   </link>
   <joint name="arm_joint_1" type="revolute">
-    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-1.57079632679425 0 -3.14159265358979" />
+    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-0.78539816339 0 -3.14159265358979" />
     <parent link="docking_1" />
     <child link="dock_arm_1" />
     <axis xyz="-1 0 0" />
@@ -157,7 +157,7 @@
     </collision>
   </link>
   <joint name="arm_joint_2" type="revolute">
-    <origin xyz="1.50831912172871 0.822636592430764 -0.094403978789434" rpy="0 0 0" />
+    <origin xyz="1.50831912172871 0.822636592430764 -0.094403978789434" rpy="-0.7853981633974483 0 0" />
     <parent link="docking_2" />
     <child link="dock_arm_2" />
     <axis xyz="1 0 0" />
@@ -215,7 +215,7 @@
     </collision>
   </link>
   <joint name="arm_joint_3" type="revolute">
-    <origin xyz="2.58061469903853 0.821037736652904 -0.0923428786138167" rpy="0 0 -3.14158674425948" />
+    <origin xyz="2.58061469903853 0.821037736652904 -0.0923428786138167" rpy="-0.7853981633974483 0 -3.14158674425948" />
     <parent link="docking_3" />
     <child link="dock_arm_3" />
     <axis xyz="-0.99999999998254 0 0" />
@@ -273,7 +273,7 @@
     </collision>
   </link>
   <joint name="arm_joint_4" type="revolute">
-    <origin xyz="0.468826677599663 0.82263659243076 -0.0944039787894324" rpy="0 0 -3.14158674425949" />
+    <origin xyz="0.468826677599663 0.82263659243076 -0.0944039787894324" rpy="-0.7853981633974483 0 -3.14158674425949" />
     <parent link="docking_4" />
     <child link="dock_arm_4" />
     <axis xyz="0.99999999998254 0 0" />
@@ -371,12 +371,16 @@
   </gazebo>
 
   <gazebo reference="lift_plate_carrier">
-    <gravity>false</gravity>
+    <gravity>true</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="lift_plate">
-    <gravity>false</gravity>
+    <gravity>true</gravity>
     <self_collide>false</self_collide>
   </gazebo>
+  <gazebo reference="lift_plate">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+</gazebo>   
 </robot>
