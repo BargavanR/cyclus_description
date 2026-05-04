@@ -1,0 +1,47 @@
+[0.292s] Invoking command in '/home/bargavan/cyclus/build/cyclus_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/bargavan/cyclus/install/carrier_emrac:/opt/ros/humble /usr/bin/cmake --build /home/bargavan/cyclus/build/cyclus_description -- -j8 -l8
+[0.325s] Invoked command in '/home/bargavan/cyclus/build/cyclus_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/bargavan/cyclus/install/carrier_emrac:/opt/ros/humble /usr/bin/cmake --build /home/bargavan/cyclus/build/cyclus_description -- -j8 -l8
+[0.335s] Invoking command in '/home/bargavan/cyclus/build/cyclus_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/bargavan/cyclus/install/carrier_emrac:/opt/ros/humble /usr/bin/cmake --install /home/bargavan/cyclus/build/cyclus_description
+[0.342s] -- Install configuration: ""
+[0.343s] -- Execute custom install script
+[0.343s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/config/cyclus_integrated_controllers.yaml
+[0.343s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/config/emrac_arm_controllers.yaml
+[0.343s] -- Symlinking: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/__pycache__/cyclus_integrated.launch.cpython-310.pyc
+[0.352s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/__pycache__/emrac_body.launch.cpython-310.pyc
+[0.352s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/cyclus_integrated.launch.py
+[0.352s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/emrac_body.launch.py
+[0.352s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/gazebo.launch.py
+[0.352s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Electro Mechanical Drive Pos 3.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift ACME Drv Shaft Motors Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift ACME Drv Shaft Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Arms Drv Blks Dwn Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Arms Dwn Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Plate Dwn Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Support Blocks Bolts Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Lift Support Blocks Pos 1.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/emrac/EMRAC Pos 1-2.stl
+[0.353s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/ground_rails.STL
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_left.STL
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_right.STL
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_integrated_system.urdf.xacro
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_stationary_scene.urdf.xacro
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf.xacro
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds/cyclus_empty.world.sdf
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/arm_deg_cmd_bridge.py
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/emrac_planar_cmd_bridge.py
+[0.354s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/package_run_dependencies/cyclus_description
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/parent_prefix_path/cyclus_description
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.sh
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.dsv
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.sh
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/path.dsv
+[0.355s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.bash
+[0.356s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.sh
+[0.356s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.zsh
+[0.356s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/local_setup.dsv
+[0.356s] -- Symlinking: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.dsv
+[0.364s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/packages/cyclus_description
+[0.364s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig.cmake
+[0.365s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/cmake/cyclus_descriptionConfig-version.cmake
+[0.365s] -- Up-to-date symlink: /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/package.xml
+[0.367s] Invoked command in '/home/bargavan/cyclus/build/cyclus_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/bargavan/cyclus/install/carrier_emrac:/opt/ros/humble /usr/bin/cmake --install /home/bargavan/cyclus/build/cyclus_description

@@ -15,6 +15,7 @@ install(
 install(
   PROGRAMS
     scripts/arm_deg_cmd_bridge.py
+    scripts/emrac_planar_cmd_bridge.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

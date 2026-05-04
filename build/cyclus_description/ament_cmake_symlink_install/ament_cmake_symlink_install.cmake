@@ -313,8 +313,8 @@ message(STATUS "Execute custom install script")
 # install(DIRECTORY "config" "launch" "meshes" "urdf" "worlds" "DESTINATION" "share/cyclus_description")
 ament_cmake_symlink_install_directory("/home/bargavan/cyclus/src/cyclus_description" DIRECTORY "config" "launch" "meshes" "urdf" "worlds" "DESTINATION" "share/cyclus_description")
 
-# install(PROGRAMS "scripts/arm_deg_cmd_bridge.py" "DESTINATION" "lib/cyclus_description")
-ament_cmake_symlink_install_programs("/home/bargavan/cyclus/src/cyclus_description" PROGRAMS "scripts/arm_deg_cmd_bridge.py" "DESTINATION" "lib/cyclus_description")
+# install(PROGRAMS "scripts/arm_deg_cmd_bridge.py" "scripts/emrac_planar_cmd_bridge.py" "DESTINATION" "lib/cyclus_description")
+ament_cmake_symlink_install_programs("/home/bargavan/cyclus/src/cyclus_description" PROGRAMS "scripts/arm_deg_cmd_bridge.py" "scripts/emrac_planar_cmd_bridge.py" "DESTINATION" "lib/cyclus_description")
 
 # install(FILES "/home/bargavan/cyclus/build/cyclus_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/cyclus_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/bargavan/cyclus/src/cyclus_description" FILES "/home/bargavan/cyclus/build/cyclus_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/cyclus_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

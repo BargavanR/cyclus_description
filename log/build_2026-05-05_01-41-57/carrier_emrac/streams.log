@@ -1,0 +1,18 @@
+[0.676s] Invoking command in '/home/bargavan/cyclus/src/carrier_emrac': PYTHONPATH=/home/bargavan/cyclus/build/carrier_emrac/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/carrier_emrac build --build-base /home/bargavan/cyclus/build/carrier_emrac/build install --record /home/bargavan/cyclus/build/carrier_emrac/install.log --single-version-externally-managed install_data
+[0.920s] running egg_info
+[0.921s] writing ../../build/carrier_emrac/carrier_emrac.egg-info/PKG-INFO
+[0.921s] writing dependency_links to ../../build/carrier_emrac/carrier_emrac.egg-info/dependency_links.txt
+[0.921s] writing entry points to ../../build/carrier_emrac/carrier_emrac.egg-info/entry_points.txt
+[0.922s] writing requirements to ../../build/carrier_emrac/carrier_emrac.egg-info/requires.txt
+[0.922s] writing top-level names to ../../build/carrier_emrac/carrier_emrac.egg-info/top_level.txt
+[0.922s] reading manifest file '../../build/carrier_emrac/carrier_emrac.egg-info/SOURCES.txt'
+[0.923s] writing manifest file '../../build/carrier_emrac/carrier_emrac.egg-info/SOURCES.txt'
+[0.924s] running build
+[0.924s] running install
+[0.924s] running install_data
+[0.924s] running install_egg_info
+[0.927s] removing '/home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages/carrier_emrac-0.0.0-py3.10.egg-info' (and everything under it)
+[0.927s] Copying ../../build/carrier_emrac/carrier_emrac.egg-info to /home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages/carrier_emrac-0.0.0-py3.10.egg-info
+[0.928s] running install_scripts
+[0.947s] writing list of installed files to '/home/bargavan/cyclus/build/carrier_emrac/install.log'
+[0.969s] Invoked command in '/home/bargavan/cyclus/src/carrier_emrac' returned '0': PYTHONPATH=/home/bargavan/cyclus/build/carrier_emrac/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/carrier_emrac build --build-base /home/bargavan/cyclus/build/carrier_emrac/build install --record /home/bargavan/cyclus/build/carrier_emrac/install.log --single-version-externally-managed install_data

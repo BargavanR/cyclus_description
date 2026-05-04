@@ -1,0 +1,37 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    emrac_planar_controller:
+      type: position_controllers/JointGroupPositionController
+
+    arm_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+emrac_planar_controller:
+  ros__parameters:
+    joints:
+      - emrac_slide_axis_1
+      - emrac_slide_axis_2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+arm_position_controller:
+  ros__parameters:
+    joints:
+      - base_to_lift_plate_carrier
+      - arm_joint_1
+      - arm_joint_2
+      - arm_joint_3
+      - arm_joint_4
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

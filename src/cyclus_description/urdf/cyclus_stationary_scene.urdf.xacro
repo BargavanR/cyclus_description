@@ -68,6 +68,7 @@
     </collision>
   </link>
 
+
   <joint name="base_to_right" type="fixed">
     <parent link="base_link"/>
     <child link="stationary_structure_right"/>
@@ -79,6 +80,7 @@
     <child link="stationary_structure_left"/>
     <origin xyz="0 ${left_pose_y} 0" rpy="0 0 0"/>
   </joint>
+
 
   <gazebo>
     <static>true</static>
@@ -93,4 +95,5 @@
     <material>Gazebo/Grey</material>
     <self_collide>false</self_collide>
   </gazebo>
+
 </robot>
