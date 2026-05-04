@@ -5,33 +5,67 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    emrac_planar_controller:
+    emrac_1_planar_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_2_planar_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_3_planar_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_4_planar_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_1_arm_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_2_arm_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_3_arm_controller:
+      type: position_controllers/JointGroupPositionController
+    emrac_4_arm_controller:
       type: position_controllers/JointGroupPositionController
 
-    arm_position_controller:
-      type: position_controllers/JointGroupPositionController
-
-emrac_planar_controller:
+emrac_1_planar_controller:
   ros__parameters:
-    joints:
-      - emrac_slide_axis_1
-      - emrac_slide_axis_2
-    command_interfaces:
-      - position
-    state_interfaces:
-      - position
-      - velocity
+    joints: [emrac_1_slide_axis_1, emrac_1_slide_axis_2]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
 
-arm_position_controller:
+emrac_2_planar_controller:
   ros__parameters:
-    joints:
-      - base_to_lift_plate_carrier
-      - arm_joint_1
-      - arm_joint_2
-      - arm_joint_3
-      - arm_joint_4
-    command_interfaces:
-      - position
-    state_interfaces:
-      - position
-      - velocity
+    joints: [emrac_2_slide_axis_1, emrac_2_slide_axis_2]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_3_planar_controller:
+  ros__parameters:
+    joints: [emrac_3_slide_axis_1, emrac_3_slide_axis_2]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_4_planar_controller:
+  ros__parameters:
+    joints: [emrac_4_slide_axis_1, emrac_4_slide_axis_2]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_1_arm_controller:
+  ros__parameters:
+    joints: [emrac_1_base_to_lift_plate_carrier, emrac_1_arm_joint_1, emrac_1_arm_joint_2, emrac_1_arm_joint_3, emrac_1_arm_joint_4]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_2_arm_controller:
+  ros__parameters:
+    joints: [emrac_2_base_to_lift_plate_carrier, emrac_2_arm_joint_1, emrac_2_arm_joint_2, emrac_2_arm_joint_3, emrac_2_arm_joint_4]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_3_arm_controller:
+  ros__parameters:
+    joints: [emrac_3_base_to_lift_plate_carrier, emrac_3_arm_joint_1, emrac_3_arm_joint_2, emrac_3_arm_joint_3, emrac_3_arm_joint_4]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+
+emrac_4_arm_controller:
+  ros__parameters:
+    joints: [emrac_4_base_to_lift_plate_carrier, emrac_4_arm_joint_1, emrac_4_arm_joint_2, emrac_4_arm_joint_3, emrac_4_arm_joint_4]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]

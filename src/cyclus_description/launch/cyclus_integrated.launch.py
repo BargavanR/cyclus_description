@@ -11,16 +11,14 @@ def generate_launch_description():
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_empty.world.sdf'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_integrated_system.urdf.xacro'])
 
+    
     emrac_axis_1_xyz = LaunchConfiguration('emrac_axis_1_xyz')
     emrac_axis_2_xyz = LaunchConfiguration('emrac_axis_2_xyz')
-    stationary_z_offset = LaunchConfiguration('stationary_z_offset')
-    ground_rails_mount_x = LaunchConfiguration('ground_rails_mount_x')
-    ground_rails_mount_y = LaunchConfiguration('ground_rails_mount_y')
-    ground_rails_mount_z = LaunchConfiguration('ground_rails_mount_z')
+
     robot_description = Command([
         'xacro ',
         xacro_file,
-        ' stationary_z_offset:=', stationary_z_offset,
+
         ' emrac_axis_1_xyz:=', emrac_axis_1_xyz,
         ' emrac_axis_2_xyz:=', emrac_axis_2_xyz,
     ])
@@ -52,7 +50,7 @@ def generate_launch_description():
     )
 
     joint_state_broadcaster_spawner = TimerAction(
-        period=4.0,
+        period=5.0,
         actions=[
             Node(
                 package='controller_manager',
@@ -63,28 +61,38 @@ def generate_launch_description():
         ],
     )
 
-    planar_controller_spawner = TimerAction(
-        period=5.0,
-        actions=[
-            Node(
-                package='controller_manager',
-                executable='spawner',
-                output='screen',
-                arguments=['emrac_planar_controller', '--controller-manager', '/controller_manager'],
-            )
-        ],
+    emrac_1_controller_spawner = TimerAction(
+        period=7.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_1_planar_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_2_controller_spawner = TimerAction(
+        period=9.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_2_planar_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_3_controller_spawner = TimerAction(
+        period=11.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_3_planar_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_4_controller_spawner = TimerAction(
+        period=13.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_4_planar_controller', '--controller-manager', '/controller_manager'])],
     )
 
-    arm_controller_spawner = TimerAction(
-        period=6.0,
-        actions=[
-            Node(
-                package='controller_manager',
-                executable='spawner',
-                output='screen',
-                arguments=['arm_position_controller', '--controller-manager', '/controller_manager'],
-            )
-        ],
+    emrac_1_arm_controller_spawner = TimerAction(
+        period=15.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_1_arm_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_2_arm_controller_spawner = TimerAction(
+        period=17.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_2_arm_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_3_arm_controller_spawner = TimerAction(
+        period=19.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_3_arm_controller', '--controller-manager', '/controller_manager'])],
+    )
+    emrac_4_arm_controller_spawner = TimerAction(
+        period=21.0,
+        actions=[Node(package='controller_manager', executable='spawner', output='screen', arguments=['emrac_4_arm_controller', '--controller-manager', '/controller_manager'])],
     )
 
     planar_cmd_bridge = Node(
@@ -100,15 +108,21 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        DeclareLaunchArgument('stationary_z_offset', default_value='0.3'),
+      
         DeclareLaunchArgument('emrac_axis_1_xyz', default_value='1,0,0'),
         DeclareLaunchArgument('emrac_axis_2_xyz', default_value='0,0,-1'),
         gz_sim,
         robot_state_publisher,
         spawn_entity,
         joint_state_broadcaster_spawner,
-        planar_controller_spawner,
-        arm_controller_spawner,
+        emrac_1_controller_spawner,
+        emrac_2_controller_spawner,
+        emrac_3_controller_spawner,
+        emrac_4_controller_spawner,
+        emrac_1_arm_controller_spawner,
+        emrac_2_arm_controller_spawner,
+        emrac_3_arm_controller_spawner,
+        emrac_4_arm_controller_spawner,
         planar_cmd_bridge,
         arm_deg_cmd_bridge,
     ])

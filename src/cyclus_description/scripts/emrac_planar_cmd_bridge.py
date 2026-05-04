@@ -8,7 +8,12 @@ from std_msgs.msg import Float64MultiArray
 class EmracPlanarCommandBridge(Node):
     def __init__(self) -> None:
         super().__init__('emrac_planar_cmd_bridge')
-        self._pub = self.create_publisher(Float64MultiArray, '/emrac_planar_controller/commands', 10)
+        self._publishers = {
+            1: self.create_publisher(Float64MultiArray, '/emrac_1_planar_controller/commands', 10),
+            2: self.create_publisher(Float64MultiArray, '/emrac_2_planar_controller/commands', 10),
+            3: self.create_publisher(Float64MultiArray, '/emrac_3_planar_controller/commands', 10),
+            4: self.create_publisher(Float64MultiArray, '/emrac_4_planar_controller/commands', 10),
+        }
         self._sub = self.create_subscription(
             Float64MultiArray,
             '/emrac_planar_cmd',
@@ -16,17 +21,22 @@ class EmracPlanarCommandBridge(Node):
             10,
         )
         self.get_logger().info(
-            'Listening on /emrac_planar_cmd and forwarding [axis_1_m, axis_2_m] to /emrac_planar_controller/commands'
+            'Listening on /emrac_planar_cmd and forwarding [emrac_id, axis_1_m, axis_2_m] to /emrac_<id>_planar_controller/commands'
         )
 
     def _handle_cmd(self, msg: Float64MultiArray) -> None:
-        if len(msg.data) != 2:
-            self.get_logger().warn('Expected 2 values: [axis_1_m, axis_2_m]')
+        if len(msg.data) != 3:
+            self.get_logger().warn('Expected 3 values: [emrac_id, axis_1_m, axis_2_m]')
+            return
+
+        emrac_id = int(msg.data[0])
+        if emrac_id not in self._publishers:
+            self.get_logger().warn('EMRAC id must be 1, 2, 3, or 4')
             return
 
         out = Float64MultiArray()
-        out.data = [float(msg.data[0]), float(msg.data[1])]
-        self._pub.publish(out)
+        out.data = [float(msg.data[1]), float(msg.data[2])]
+        self._publishers[emrac_id].publish(out)
 
 
 def main() -> None:
