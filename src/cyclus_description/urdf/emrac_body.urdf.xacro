@@ -1,14 +1,25 @@
 <robot name="emrac_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="lift_plate_scale" value="0.001 0.001 0.001" />
   <xacro:property name="lift_plate_mount_y" value="-0.29" />
-  <xacro:property name="lift_plate_travel" value="0.6" />
+  <xacro:property name="lift_plate_travel" value="0.4" />
   <xacro:property name="lift_plate_origin_x" value="-1.90140869140626" />
   <xacro:property name="lift_plate_origin_y" value="-0.40512716674804685857" />
   <xacro:property name="lift_plate_origin_z" value="0.45429059314727783" />
   <xacro:property name="lift_plate_roll" value="1.5707963267949" />
+  <xacro:property name="lift_plate_collision_size" value="1.02 0.66 0.03" />
+  <xacro:property name="dock_arm_collision_length" value="0.78" />
+  <xacro:property name="dock_arm_collision_radius" value="0.02" />
 
   <material name="lift_plate_grey">
     <color rgba="0.72 0.72 0.72 1.0" />
+  </material>
+
+  <material name="carrier_charcoal">
+    <color rgba="0.22 0.23 0.24 1.0" />
+  </material>
+
+  <material name="carrier_black">
+    <color rgba="0.14 0.14 0.15 1.0" />
   </material>
 
   <link name="emrac_body_root">
@@ -37,9 +48,7 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/base_link.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
-      </material>
+      <material name="carrier_charcoal" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -59,9 +68,7 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/docking_1.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -87,22 +94,21 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/dock_arm_1.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
       <geometry>
-        <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/collision/dock_arm_1.STL" />
+        <cylinder radius="${dock_arm_collision_radius}" length="${dock_arm_collision_length}" />
       </geometry>
     </collision>
   </link>
   <joint name="arm_joint_1" type="revolute">
-    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-1.57079632679425 0 -3.14159265358979" />    <parent link="docking_1" />
+    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-1.57079632679425 0 -3.14159265358979" />
+    <parent link="docking_1" />
     <child link="dock_arm_1" />
     <axis xyz="-1 0 0" />
-    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="0.2" />
+    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="1.0" />
     <dynamics damping="50.0" friction="20.0" />
   </joint>
   <link name="docking_2">
@@ -116,9 +122,7 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/docking_2.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -144,14 +148,12 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/dock_arm_2.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
       <geometry>
-        <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/collision/dock_arm_2.STL" />
+        <cylinder radius="${dock_arm_collision_radius}" length="${dock_arm_collision_length}" />
       </geometry>
     </collision>
   </link>
@@ -160,7 +162,7 @@
     <parent link="docking_2" />
     <child link="dock_arm_2" />
     <axis xyz="1 0 0" />
-    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="0.2" />
+    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="1.0" />
     <dynamics damping="50.0" friction="20.0" />
   </joint>
   <link name="docking_3">
@@ -174,9 +176,7 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/docking_3.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -202,14 +202,12 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/dock_arm_3.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
       <geometry>
-        <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/collision/dock_arm_3.STL" />
+        <cylinder radius="${dock_arm_collision_radius}" length="${dock_arm_collision_length}" />
       </geometry>
     </collision>
   </link>
@@ -218,7 +216,7 @@
     <parent link="docking_3" />
     <child link="dock_arm_3" />
     <axis xyz="-0.99999999998254 0 0" />
-    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="0.2" />
+    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="1.0" />
     <dynamics damping="50.0" friction="20.0" />
   </joint>
   <link name="docking_4">
@@ -232,9 +230,7 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/docking_4.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -260,14 +256,12 @@
       <geometry>
         <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/visual/dock_arm_4.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="carrier_black" />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
       <geometry>
-        <mesh filename="file:///home/bargavan/cyclus/src/carrier_emrac/meshes/collision/dock_arm_4.STL" />
+        <cylinder radius="${dock_arm_collision_radius}" length="${dock_arm_collision_length}" />
       </geometry>
     </collision>
   </link>
@@ -276,7 +270,7 @@
     <parent link="docking_4" />
     <child link="dock_arm_4" />
     <axis xyz="0.99999999998254 0 0" />
-    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="0.2" />
+    <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="1.0" />
     <dynamics damping="50.0" friction="20.0" />
   </joint>
 
@@ -304,7 +298,7 @@
     <collision>
       <origin xyz="${lift_plate_origin_x} ${lift_plate_origin_y} ${lift_plate_origin_z}" rpy="${lift_plate_roll} 0 0" />
       <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/emrac/EMRAC Lift Plate Dwn Pos 1.stl" scale="${lift_plate_scale}" />
+        <box size="${lift_plate_collision_size}" />
       </geometry>
     </collision>
   </link>
@@ -314,8 +308,8 @@
     <parent link="base_link" />
     <child link="lift_plate_carrier" />
     <axis xyz="0 -1 0" />
-    <limit lower="0.0" upper="${lift_plate_travel}" effort="500.0" velocity="0.15" />
-    <dynamics damping="30.0" friction="10.0" />
+    <limit lower="-${lift_plate_travel}" upper="${lift_plate_travel}" effort="1000.0" velocity="0.58" />
+    <dynamics damping="1.0" friction="0.05" />
   </joint>
 
   <joint name="lift_plate_mount" type="fixed">
@@ -324,49 +318,106 @@
     <child link="lift_plate" />
   </joint>
 
+  <ros2_control name="GazeboSimSystem" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <joint name="base_to_lift_plate_carrier">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="arm_joint_1">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="arm_joint_2">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="arm_joint_3">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="arm_joint_4">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <self_collide>true</self_collide>
+    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find cyclus_description)/config/emrac_arm_controllers.yaml</parameters>
+      <controller_manager_node_name>controller_manager</controller_manager_node_name>
+    </plugin>
+  </gazebo>
+
   <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="docking_1">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="dock_arm_1">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
-    <self_collide>false</self_collide>
+    <self_collide>true</self_collide>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
   </gazebo>
 
   <gazebo reference="docking_2">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="dock_arm_2">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
-    <self_collide>false</self_collide>
+    <self_collide>true</self_collide>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
   </gazebo>
 
   <gazebo reference="docking_3">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="dock_arm_3">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
-    <self_collide>false</self_collide>
+    <self_collide>true</self_collide>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
   </gazebo>
 
   <gazebo reference="docking_4">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="dock_arm_4">
+    <material>Gazebo/Black</material>
     <gravity>false</gravity>
-    <self_collide>false</self_collide>
+    <self_collide>true</self_collide>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
   </gazebo>
 
   <gazebo reference="lift_plate_carrier">
@@ -375,11 +426,10 @@
   </gazebo>
 
   <gazebo reference="lift_plate">
+    <material>Gazebo/LightGrey</material>
     <gravity>true</gravity>
-    <self_collide>false</self_collide>
+    <self_collide>true</self_collide>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
   </gazebo>
-  <gazebo reference="lift_plate">
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
-</gazebo>   
 </robot>

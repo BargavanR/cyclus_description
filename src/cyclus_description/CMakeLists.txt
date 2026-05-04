@@ -8,8 +8,14 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch meshes urdf worlds
+  DIRECTORY config launch meshes urdf worlds
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+  PROGRAMS
+    scripts/arm_deg_cmd_bridge.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()

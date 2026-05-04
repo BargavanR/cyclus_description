@@ -1,3 +1,4 @@
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/config/emrac_arm_controllers.yaml
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/__pycache__/emrac_body.launch.cpython-310.pyc
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/emrac_body.launch.py
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/launch/gazebo.launch.py
@@ -13,8 +14,10 @@
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_left.STL
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/meshes/stationary_structure_right.STL
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_stationary_scene.urdf.xacro
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf.xacro
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds/cyclus_empty.world.sdf
+/home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/arm_deg_cmd_bridge.py
 /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/package_run_dependencies/cyclus_description
 /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/parent_prefix_path/cyclus_description
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.sh

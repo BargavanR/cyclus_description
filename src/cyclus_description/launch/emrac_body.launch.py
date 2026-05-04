@@ -44,8 +44,49 @@ def generate_launch_description():
         ],
     )
 
+    joint_state_broadcaster_spawner = TimerAction(
+        period=4.0,
+        actions=[
+            Node(
+                package='controller_manager',
+                executable='spawner',
+                output='screen',
+                arguments=[
+                    'joint_state_broadcaster',
+                    '--controller-manager',
+                    '/controller_manager',
+                ],
+            )
+        ],
+    )
+
+    arm_position_controller_spawner = TimerAction(
+        period=5.0,
+        actions=[
+            Node(
+                package='controller_manager',
+                executable='spawner',
+                output='screen',
+                arguments=[
+                    'arm_position_controller',
+                    '--controller-manager',
+                    '/controller_manager',
+                ],
+            )
+        ],
+    )
+
+    arm_deg_cmd_bridge = Node(
+        package='cyclus_description',
+        executable='arm_deg_cmd_bridge.py',
+        output='screen',
+    )
+
     return LaunchDescription([
         gz_sim,
         robot_state_publisher,
         spawn_entity,
+        joint_state_broadcaster_spawner,
+        arm_position_controller_spawner,
+        arm_deg_cmd_bridge,
     ])

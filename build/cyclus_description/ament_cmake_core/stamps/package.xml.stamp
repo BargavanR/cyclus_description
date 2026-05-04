@@ -10,8 +10,14 @@
 
   <depend>launch</depend>
   <depend>launch_ros</depend>
+  <depend>controller_manager</depend>
+  <depend>gz_ros2_control</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>position_controllers</depend>
+  <depend>rclpy</depend>
   <depend>robot_state_publisher</depend>
   <depend>ros_gz_sim</depend>
+  <depend>std_msgs</depend>
   <depend>xacro</depend>
 
   <export>

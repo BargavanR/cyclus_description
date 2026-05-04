@@ -1,0 +1,50 @@
+[0.779s] Invoking command in '/home/bargavan/cyclus/src/carrier_emrac': PYTHONPATH=/home/bargavan/cyclus/build/carrier_emrac/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/carrier_emrac build --build-base /home/bargavan/cyclus/build/carrier_emrac/build install --record /home/bargavan/cyclus/build/carrier_emrac/install.log --single-version-externally-managed install_data
+[1.038s] running egg_info
+[1.038s] creating ../../build/carrier_emrac/carrier_emrac.egg-info
+[1.039s] writing ../../build/carrier_emrac/carrier_emrac.egg-info/PKG-INFO
+[1.039s] writing dependency_links to ../../build/carrier_emrac/carrier_emrac.egg-info/dependency_links.txt
+[1.039s] writing entry points to ../../build/carrier_emrac/carrier_emrac.egg-info/entry_points.txt
+[1.039s] writing requirements to ../../build/carrier_emrac/carrier_emrac.egg-info/requires.txt
+[1.039s] writing top-level names to ../../build/carrier_emrac/carrier_emrac.egg-info/top_level.txt
+[1.039s] writing manifest file '../../build/carrier_emrac/carrier_emrac.egg-info/SOURCES.txt'
+[1.040s] reading manifest file '../../build/carrier_emrac/carrier_emrac.egg-info/SOURCES.txt'
+[1.041s] writing manifest file '../../build/carrier_emrac/carrier_emrac.egg-info/SOURCES.txt'
+[1.041s] running build
+[1.041s] running install
+[1.041s] running install_data
+[1.041s] creating /home/bargavan/cyclus/install/carrier_emrac/share/ament_index
+[1.041s] creating /home/bargavan/cyclus/install/carrier_emrac/share/ament_index/resource_index
+[1.041s] creating /home/bargavan/cyclus/install/carrier_emrac/share/ament_index/resource_index/packages
+[1.042s] copying resource/carrier_emrac -> /home/bargavan/cyclus/install/carrier_emrac/share/ament_index/resource_index/packages
+[1.042s] copying package.xml -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac
+[1.042s] copying launch/launch.py -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac
+[1.042s] creating /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/urdf
+[1.042s] copying urdf/carrier_emrac.xacro -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/urdf/
+[1.046s] creating /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/rviz
+[1.046s] copying rviz/default.rviz -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/rviz/
+[1.047s] creating /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes
+[1.047s] creating /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision
+[1.047s] copying meshes/collision/docking_3.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.047s] copying meshes/collision/docking_4.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.048s] copying meshes/collision/dock_arm_1.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.048s] copying meshes/collision/dock_arm_4.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.049s] copying meshes/collision/dock_arm_3.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.050s] copying meshes/collision/base_link.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.095s] copying meshes/collision/docking_2.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.095s] copying meshes/collision/docking_1.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.095s] copying meshes/collision/dock_arm_2.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/collision/
+[1.096s] creating /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual
+[1.096s] copying meshes/visual/docking_3.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.097s] copying meshes/visual/docking_4.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.097s] copying meshes/visual/dock_arm_1.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.097s] copying meshes/visual/dock_arm_4.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.098s] copying meshes/visual/dock_arm_3.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.099s] copying meshes/visual/base_link.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.142s] copying meshes/visual/docking_2.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.142s] copying meshes/visual/docking_1.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.143s] copying meshes/visual/dock_arm_2.STL -> /home/bargavan/cyclus/install/carrier_emrac/share/carrier_emrac/meshes/visual/
+[1.143s] running install_egg_info
+[1.145s] Copying ../../build/carrier_emrac/carrier_emrac.egg-info to /home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages/carrier_emrac-0.0.0-py3.10.egg-info
+[1.147s] running install_scripts
+[1.165s] writing list of installed files to '/home/bargavan/cyclus/build/carrier_emrac/install.log'
+[1.191s] Invoked command in '/home/bargavan/cyclus/src/carrier_emrac' returned '0': PYTHONPATH=/home/bargavan/cyclus/build/carrier_emrac/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bargavan/cyclus/install/carrier_emrac/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/carrier_emrac build --build-base /home/bargavan/cyclus/build/carrier_emrac/build install --record /home/bargavan/cyclus/build/carrier_emrac/install.log --single-version-externally-managed install_data
