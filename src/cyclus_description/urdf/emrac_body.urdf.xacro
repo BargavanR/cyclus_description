@@ -1,7 +1,7 @@
 <robot name="emrac_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="lift_plate_scale" value="0.001 0.001 0.001" />
-  <xacro:property name="lift_plate_mount_y" value="-1.05" />
-  <xacro:property name="lift_plate_travel" value="0.35" />
+  <xacro:property name="lift_plate_mount_y" value="-0.29" />
+  <xacro:property name="lift_plate_travel" value="0.6" />
   <xacro:property name="lift_plate_origin_x" value="-1.90140869140626" />
   <xacro:property name="lift_plate_origin_y" value="-0.40512716674804685857" />
   <xacro:property name="lift_plate_origin_z" value="0.45429059314727783" />
@@ -99,8 +99,7 @@
     </collision>
   </link>
   <joint name="arm_joint_1" type="revolute">
-    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-0.78539816339 0 -3.14159265358979" />
-    <parent link="docking_1" />
+    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-1.57079632679425 0 -3.14159265358979" />    <parent link="docking_1" />
     <child link="dock_arm_1" />
     <axis xyz="-1 0 0" />
     <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="0.2" />
@@ -157,7 +156,7 @@
     </collision>
   </link>
   <joint name="arm_joint_2" type="revolute">
-    <origin xyz="1.50831912172871 0.822636592430764 -0.094403978789434" rpy="-0.7853981633974483 0 0" />
+    <origin xyz="1.50831912172871 0.822636592430764 -0.094403978789434" rpy="0 0 0" />
     <parent link="docking_2" />
     <child link="dock_arm_2" />
     <axis xyz="1 0 0" />
@@ -215,7 +214,7 @@
     </collision>
   </link>
   <joint name="arm_joint_3" type="revolute">
-    <origin xyz="2.58061469903853 0.821037736652904 -0.0923428786138167" rpy="-0.7853981633974483 0 -3.14158674425948" />
+    <origin xyz="2.58061469903853 0.821037736652904 -0.0923428786138167" rpy="0 0 -3.14158674425948" />
     <parent link="docking_3" />
     <child link="dock_arm_3" />
     <axis xyz="-0.99999999998254 0 0" />
@@ -273,7 +272,7 @@
     </collision>
   </link>
   <joint name="arm_joint_4" type="revolute">
-    <origin xyz="0.468826677599663 0.82263659243076 -0.0944039787894324" rpy="-0.7853981633974483 0 -3.14158674425949" />
+    <origin xyz="0.468826677599663 0.82263659243076 -0.0944039787894324" rpy="0 0 -3.14158674425949" />
     <parent link="docking_4" />
     <child link="dock_arm_4" />
     <axis xyz="0.99999999998254 0 0" />
@@ -315,7 +314,7 @@
     <parent link="base_link" />
     <child link="lift_plate_carrier" />
     <axis xyz="0 -1 0" />
-    <limit lower="-${lift_plate_travel}" upper="${lift_plate_travel}" effort="500.0" velocity="0.15" />
+    <limit lower="0.0" upper="${lift_plate_travel}" effort="500.0" velocity="0.15" />
     <dynamics damping="30.0" friction="10.0" />
   </joint>
 
