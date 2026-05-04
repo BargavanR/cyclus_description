@@ -11,19 +11,18 @@ def generate_launch_description():
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_empty.world.sdf'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_integrated_system.urdf.xacro'])
 
-    structure_gap_mm = LaunchConfiguration('structure_gap_mm')
     emrac_axis_1_xyz = LaunchConfiguration('emrac_axis_1_xyz')
     emrac_axis_2_xyz = LaunchConfiguration('emrac_axis_2_xyz')
-    emrac_axis_1_limit_m = LaunchConfiguration('emrac_axis_1_limit_m')
-    emrac_axis_2_limit_m = LaunchConfiguration('emrac_axis_2_limit_m')
+    stationary_z_offset = LaunchConfiguration('stationary_z_offset')
+    ground_rails_mount_x = LaunchConfiguration('ground_rails_mount_x')
+    ground_rails_mount_y = LaunchConfiguration('ground_rails_mount_y')
+    ground_rails_mount_z = LaunchConfiguration('ground_rails_mount_z')
     robot_description = Command([
         'xacro ',
         xacro_file,
-        ' structure_gap_mm:=', structure_gap_mm,
+        ' stationary_z_offset:=', stationary_z_offset,
         ' emrac_axis_1_xyz:=', emrac_axis_1_xyz,
         ' emrac_axis_2_xyz:=', emrac_axis_2_xyz,
-        ' emrac_axis_1_limit_m:=', emrac_axis_1_limit_m,
-        ' emrac_axis_2_limit_m:=', emrac_axis_2_limit_m,
     ])
 
     gz_sim = IncludeLaunchDescription(
@@ -101,11 +100,9 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        DeclareLaunchArgument('structure_gap_mm', default_value='1932.0'),
+        DeclareLaunchArgument('stationary_z_offset', default_value='0.3'),
         DeclareLaunchArgument('emrac_axis_1_xyz', default_value='1,0,0'),
         DeclareLaunchArgument('emrac_axis_2_xyz', default_value='0,0,-1'),
-        DeclareLaunchArgument('emrac_axis_1_limit_m', default_value='0.6'),
-        DeclareLaunchArgument('emrac_axis_2_limit_m', default_value='0.6'),
         gz_sim,
         robot_state_publisher,
         spawn_entity,

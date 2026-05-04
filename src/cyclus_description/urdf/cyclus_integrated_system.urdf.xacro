@@ -1,12 +1,16 @@
 <robot name="cyclus_integrated_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:arg name="structure_gap_mm" default="1932.0" />
+  <xacro:arg name="structure_gap_mm" default="1960.0" />
+  <xacro:arg name="stationary_z_offset" default="0.5" />
+  <xacro:arg name="ground_rails_mount_x" default="1.9" />
+  <xacro:arg name="ground_rails_mount_y" default="-0.02" />
+  <xacro:arg name="ground_rails_mount_z" default="0.3" />
   <xacro:arg name="emrac_axis_1_xyz" default="1,0,0" />
   <xacro:arg name="emrac_axis_2_xyz" default="0,0,-1" />
-  <xacro:arg name="emrac_axis_1_limit_m" default="2" />
-  <xacro:arg name="emrac_axis_2_limit_m" default="2" />
+  <xacro:arg name="emrac_axis_1_limit_m" default="10.0" />
+  <xacro:arg name="emrac_axis_2_limit_m" default="10.0" />
   <xacro:arg name="emrac_mount_x" default="0.95" />
-  <xacro:arg name="emrac_mount_y" default="0.46" />
-  <xacro:arg name="emrac_mount_z" default="1.0" />
+  <xacro:arg name="emrac_mount_y" default="0.47" />
+  <xacro:arg name="emrac_mount_z" default="0.0" />
 
   <xacro:property name="mesh_scale" value="0.001 0.001 0.001" />
   <xacro:property name="stationary_mesh_roll" value="0.0" />
@@ -16,7 +20,13 @@
   <xacro:property name="mesh_origin_z" value="-0.0001053810" />
   <xacro:property name="stationary_collision_size" value="3.0366192664 0.1168529987 2.9316412010" />
   <xacro:property name="stationary_collision_z" value="1.4659259815" />
+  <xacro:property name="ground_rails_origin_x" value="-1.3169385681" />
+  <xacro:property name="ground_rails_origin_y" value="0.0" />
+  <xacro:property name="ground_rails_origin_z" value="0.3634481812" />
+  <xacro:property name="ground_rails_collision_size" value="3.3853313599 2.1556440430 0.0588344116" />
+  <xacro:property name="ground_rails_collision_z" value="0.0294172058" />
   <xacro:property name="structure_gap_mm_value" value="$(arg structure_gap_mm)" />
+  <xacro:property name="stationary_z_offset_value" value="$(arg stationary_z_offset)" />
   <xacro:property name="left_pose_y" value="${(mesh_size_y_m / 2.0) + (float(structure_gap_mm_value) / 2000.0)}" />
   <xacro:property name="right_pose_y" value="${-left_pose_y}" />
   <xacro:property name="emrac_axis_1_limit" value="$(arg emrac_axis_1_limit_m)" />
@@ -56,6 +66,8 @@
     <color rgba="0.25 0.25 0.25 1.0" />
   </material>
 
+  <link name="world" />
+
   <link name="integrated_root">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -63,6 +75,8 @@
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
+
+
 
   <link name="stationary_structure_right">
     <inertial>
@@ -106,16 +120,49 @@
     </collision>
   </link>
 
+  <link name="ground_rails">
+    <inertial>
+      <origin xyz="0 0 0.03" rpy="0 0 0" />
+      <mass value="40.0" />
+      <inertia ixx="8.0" ixy="0" ixz="0" iyy="8.0" iyz="0" izz="8.0" />
+    </inertial>
+    <visual>
+      <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_origin_z}" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/ground_rails.STL" scale="${mesh_scale}" />
+      </geometry>
+      <material name="steel_frame" />
+    </visual>
+    <collision>
+      <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_collision_z}" rpy="0 0 0" />
+      <geometry>
+        <box size="${ground_rails_collision_size}" />
+      </geometry>
+    </collision>
+  </link>
+
   <joint name="integrated_root_to_right" type="fixed">
     <parent link="integrated_root" />
     <child link="stationary_structure_right" />
-    <origin xyz="0 ${right_pose_y} 0" rpy="0 0 0" />
+    <origin xyz="0 ${right_pose_y} ${stationary_z_offset_value}" rpy="0 0 3.14159265358979" />
   </joint>
 
   <joint name="integrated_root_to_left" type="fixed">
     <parent link="integrated_root" />
     <child link="stationary_structure_left" />
-    <origin xyz="0 ${left_pose_y} 0" rpy="0 0 0" />
+    <origin xyz="0 ${left_pose_y} ${stationary_z_offset_value}" rpy="0 0 0" />
+  </joint>
+
+  <joint name="integrated_root_to_ground_rails" type="fixed">
+    <parent link="integrated_root" />
+    <child link="ground_rails" />
+    <origin xyz="$(arg ground_rails_mount_x) $(arg ground_rails_mount_y) $(arg ground_rails_mount_z)" rpy="0 0 0" />
+  </joint>
+
+  <joint name="world_to_integrated_root" type="fixed">
+    <parent link="world" />
+    <child link="integrated_root" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
   <link name="emrac_axis_1_carrier">
@@ -139,8 +186,8 @@
     <parent link="integrated_root" />
     <child link="emrac_axis_1_carrier" />
     <axis xyz="${emrac_axis_1_vector}" />
-    <limit lower="-${emrac_axis_1_limit}" upper="${emrac_axis_1_limit}" effort="3000.0" velocity="0.5" />
-    <dynamics damping="40.0" friction="5.0" />
+    <limit lower="-${emrac_axis_1_limit}" upper="${emrac_axis_1_limit}" effort="50000.0" velocity="2.0" />
+    <dynamics damping="0.5" friction="0.0" />
   </joint>
 
   <joint name="emrac_slide_axis_2" type="prismatic">
@@ -148,8 +195,8 @@
     <parent link="emrac_axis_1_carrier" />
     <child link="emrac_axis_2_carrier" />
     <axis xyz="${emrac_axis_2_vector}" />
-    <limit lower="-${emrac_axis_2_limit}" upper="${emrac_axis_2_limit}" effort="3000.0" velocity="0.5" />
-    <dynamics damping="40.0" friction="5.0" />
+    <limit lower="-${emrac_axis_2_limit}" upper="${emrac_axis_2_limit}" effort="50000.0" velocity="2.0" />
+    <dynamics damping="0.5" friction="0.0" />
   </joint>
 
   <link name="emrac_body_root">
@@ -459,6 +506,11 @@
       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
 
+    <joint name="world_to_integrated_root">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
     <joint name="emrac_slide_axis_1">
       <command_interface name="position" />
       <state_interface name="position" />
@@ -511,11 +563,17 @@
 
   <gazebo reference="stationary_structure_right">
     <material>Gazebo/Grey</material>
-    <gravity>false</gravity>
+    <gravity>true</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="stationary_structure_left">
+    <material>Gazebo/Grey</material>
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="ground_rails">
     <material>Gazebo/Grey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
