@@ -1,7 +1,6 @@
 # Workspace editor and agent folders
 .vscode/
-.codex/
-.agents/
+
 
 # Python caches anywhere in the workspace
 **/__pycache__/
