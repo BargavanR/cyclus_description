@@ -3,6 +3,5 @@
 .codex/
 .agents/
 
-# Python caches in package subfolders
-scripts/__pycache__/
-launch/__pycache__/
+# Python caches anywhere in the workspace
+**/__pycache__/
