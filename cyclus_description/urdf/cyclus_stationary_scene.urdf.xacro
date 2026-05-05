@@ -1,99 +1,68 @@
-<?xml version="1.0"?>
+<!--
+  File: cyclus_stationary_scene.urdf.xacro
+  Purpose: Standalone stationary Cyclus scene for the cyclus_description package.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
 <robot name="cyclus_stationary_scene" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:arg name="structure_gap_mm" default="1932.0"/>
+  <xacro:include filename="includes/common_materials.xacro" />
+  <xacro:include filename="includes/stationary_components.xacro" />
 
-  <xacro:property name="mesh_scale" value="0.001 0.001 0.001"/>
-  <xacro:property name="mesh_roll" value="0.0"/>
+  <xacro:arg name="structure_gap_mm" default="1932.0" />
 
-  <!-- Raw STL bounds are in millimeters. These offsets center the mesh and keep its base on the ground in the native upright orientation. -->
-  <xacro:property name="mesh_size_y_m" value="0.1168529987"/>
-  <xacro:property name="mesh_origin_x" value="-1.5183146342"/>
-  <xacro:property name="mesh_origin_y" value="-0.0607579947"/>
-  <xacro:property name="mesh_origin_z" value="-0.0001053810"/>
-  <xacro:property name="structure_gap_mm_value" value="$(arg structure_gap_mm)"/>
-  <xacro:property name="left_pose_y" value="${(mesh_size_y_m / 2.0) + (float(structure_gap_mm_value) / 2000.0)}"/>
-  <xacro:property name="right_pose_y" value="${-left_pose_y}"/>
+  <xacro:property name="mesh_scale" value="0.001 0.001 0.001" />
+  <xacro:property name="stationary_mesh_roll" value="0.0" />
+  <xacro:property name="mesh_size_y_m" value="0.1168529987" />
+  <xacro:property name="mesh_origin_x" value="-1.5183146342" />
+  <xacro:property name="mesh_origin_y" value="-0.0607579947" />
+  <xacro:property name="mesh_origin_z" value="-0.0001053810" />
+  <xacro:property name="stationary_collision_size" value="3.0366192664 0.1168529987 2.9316412010" />
+  <xacro:property name="stationary_collision_z" value="1.4659259815" />
+  <xacro:property name="structure_gap_mm_value" value="$(arg structure_gap_mm)" />
+  <xacro:property name="left_pose_y" value="${(mesh_size_y_m / 2.0) + (float(structure_gap_mm_value) / 2000.0)}" />
+  <xacro:property name="right_pose_y" value="${-left_pose_y}" />
 
-  <material name="steel_frame">
-    <color rgba="0.25 0.25 0.25 1.0"/>
-  </material>
+  <xacro:cyclus_shared_materials />
 
   <link name="base_link">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1.0"/>
-      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
     </inertial>
   </link>
 
-  <link name="stationary_structure_right">
-    <inertial>
-      <origin xyz="0 0 0.05" rpy="0 0 0"/>
-      <mass value="50.0"/>
-      <inertia ixx="10.0" ixy="0.0" ixz="0.0" iyy="10.0" iyz="0.0" izz="10.0"/>
-    </inertial>
-    <visual>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${mesh_roll} 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_right.STL" scale="${mesh_scale}"/>
-      </geometry>
-      <material name="steel_frame"/>
-    </visual>
-    <collision>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${mesh_roll} 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_right.STL" scale="${mesh_scale}"/>
-      </geometry>
-    </collision>
-  </link>
+  <xacro:cyclus_stationary_structure
+    root_link="base_link"
+    link_name="stationary_structure_right"
+    mesh_name="stationary_structure_right.STL"
+    pose_y="${right_pose_y}"
+    pose_z="0"
+    pose_yaw="3.14159265358979"
+    mesh_origin_x="${mesh_origin_x}"
+    mesh_origin_y="${mesh_origin_y}"
+    mesh_origin_z="${mesh_origin_z}"
+    mesh_scale="${mesh_scale}"
+    stationary_mesh_roll="${stationary_mesh_roll}"
+    stationary_collision_size="${stationary_collision_size}"
+    stationary_collision_z="${stationary_collision_z}" />
 
-  <link name="stationary_structure_left">
-    <inertial>
-      <origin xyz="0 0 0.05" rpy="0 0 0"/>
-      <mass value="50.0"/>
-      <inertia ixx="10.0" ixy="0.0" ixz="0.0" iyy="10.0" iyz="0.0" izz="10.0"/>
-    </inertial>
-    <visual>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${mesh_roll} 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_left.STL" scale="${mesh_scale}"/>
-      </geometry>
-      <material name="steel_frame"/>
-    </visual>
-    <collision>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${mesh_roll} 0 0"/>
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_left.STL" scale="${mesh_scale}"/>
-      </geometry>
-    </collision>
-  </link>
-
-
-  <joint name="base_to_right" type="fixed">
-    <parent link="base_link"/>
-    <child link="stationary_structure_right"/>
-    <origin xyz="0 ${right_pose_y} 0" rpy="0 0 0"/>
-  </joint>
-
-  <joint name="base_to_left" type="fixed">
-    <parent link="base_link"/>
-    <child link="stationary_structure_left"/>
-    <origin xyz="0 ${left_pose_y} 0" rpy="0 0 0"/>
-  </joint>
-
+  <xacro:cyclus_stationary_structure
+    root_link="base_link"
+    link_name="stationary_structure_left"
+    mesh_name="stationary_structure_left.STL"
+    pose_y="${left_pose_y}"
+    pose_z="0"
+    pose_yaw="0"
+    mesh_origin_x="${mesh_origin_x}"
+    mesh_origin_y="${mesh_origin_y}"
+    mesh_origin_z="${mesh_origin_z}"
+    mesh_scale="${mesh_scale}"
+    stationary_mesh_roll="${stationary_mesh_roll}"
+    stationary_collision_size="${stationary_collision_size}"
+    stationary_collision_z="${stationary_collision_z}" />
 
   <gazebo>
     <static>true</static>
   </gazebo>
-
-  <gazebo reference="stationary_structure_right">
-    <material>Gazebo/Grey</material>
-    <self_collide>false</self_collide>
-  </gazebo>
-
-  <gazebo reference="stationary_structure_left">
-    <material>Gazebo/Grey</material>
-    <self_collide>false</self_collide>
-  </gazebo>
-
 </robot>

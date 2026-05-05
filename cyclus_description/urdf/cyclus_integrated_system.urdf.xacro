@@ -1,5 +1,15 @@
+<!--
+  File: cyclus_integrated_system.urdf.xacro
+  Purpose: Integrated stationary and EMRAC carrier system for the cyclus_description package.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
 <robot name="cyclus_integrated_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="/home/bargavan/cyclus/src/cyclus_description/urdf/emrac_body_macro.xacro" />
+  <xacro:include filename="includes/common_materials.xacro" />
+  <xacro:include filename="includes/stationary_components.xacro" />
+  <xacro:include filename="includes/emrac_control_macros.xacro" />
+  <xacro:include filename="includes/integrated_mount_macros.xacro" />
+  <xacro:include filename="emrac_body_macro.xacro" />
 
   <xacro:arg name="structure_gap_mm" default="1960.0" />
   <xacro:arg name="stationary_z_offset" default="0.5" />
@@ -37,24 +47,12 @@
   <xacro:property name="emrac_axis_2_limit" value="$(arg emrac_axis_2_limit_m)" />
   <xacro:property name="emrac_axis_1_vector" value="${' '.join('$(arg emrac_axis_1_xyz)'.split(','))}" />
   <xacro:property name="emrac_axis_2_vector" value="${' '.join('$(arg emrac_axis_2_xyz)'.split(','))}" />
+  <xacro:property name="emrac_mount_x_value" value="$(arg emrac_mount_x)" />
+  <xacro:property name="emrac_mount_y_value" value="$(arg emrac_mount_y)" />
   <xacro:property name="emrac_mount_z_value" value="$(arg emrac_mount_z)" />
   <xacro:property name="emrac_stack_z_step_value" value="$(arg emrac_stack_z_step)" />
 
-  <material name="steel_frame">
-    <color rgba="0.25 0.25 0.25 1.0" />
-  </material>
-
-  <material name="carrier_charcoal">
-    <color rgba="0.36 0.38 0.40 1.0" />
-  </material>
-
-  <material name="carrier_black">
-    <color rgba="0.24 0.25 0.27 1.0" />
-  </material>
-
-  <material name="lift_plate_grey">
-    <color rgba="0.78 0.78 0.76 1.0" />
-  </material>
+  <xacro:cyclus_shared_materials />
 
   <link name="world" />
 
@@ -72,321 +70,66 @@
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
-  <link name="stationary_structure_right">
-    <inertial>
-      <origin xyz="0 0 0.05" rpy="0 0 0" />
-      <mass value="50.0" />
-      <inertia ixx="10.0" ixy="0" ixz="0" iyy="10.0" iyz="0" izz="10.0" />
-    </inertial>
-    <visual>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${stationary_mesh_roll} 0 0" />
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_right.STL" scale="${mesh_scale}" />
-      </geometry>
-      <material name="steel_frame" />
-    </visual>
-    <collision>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${stationary_collision_z}" rpy="0 0 0" />
-      <geometry>
-        <box size="${stationary_collision_size}" />
-      </geometry>
-    </collision>
-  </link>
+  <xacro:cyclus_stationary_structure
+    root_link="integrated_root"
+    link_name="stationary_structure_right"
+    mesh_name="stationary_structure_right.STL"
+    pose_y="${right_pose_y}"
+    pose_z="${stationary_z_offset_value}"
+    pose_yaw="3.14159265358979"
+    mesh_origin_x="${mesh_origin_x}"
+    mesh_origin_y="${mesh_origin_y}"
+    mesh_origin_z="${mesh_origin_z}"
+    mesh_scale="${mesh_scale}"
+    stationary_mesh_roll="${stationary_mesh_roll}"
+    stationary_collision_size="${stationary_collision_size}"
+    stationary_collision_z="${stationary_collision_z}" />
 
-  <link name="stationary_structure_left">
-    <inertial>
-      <origin xyz="0 0 0.05" rpy="0 0 0" />
-      <mass value="50.0" />
-      <inertia ixx="10.0" ixy="0" ixz="0" iyy="10.0" iyz="0" izz="10.0" />
-    </inertial>
-    <visual>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${stationary_mesh_roll} 0 0" />
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/stationary_structure_left.STL" scale="${mesh_scale}" />
-      </geometry>
-      <material name="steel_frame" />
-    </visual>
-    <collision>
-      <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${stationary_collision_z}" rpy="0 0 0" />
-      <geometry>
-        <box size="${stationary_collision_size}" />
-      </geometry>
-    </collision>
-  </link>
+  <xacro:cyclus_stationary_structure
+    root_link="integrated_root"
+    link_name="stationary_structure_left"
+    mesh_name="stationary_structure_left.STL"
+    pose_y="${left_pose_y}"
+    pose_z="${stationary_z_offset_value}"
+    pose_yaw="0"
+    mesh_origin_x="${mesh_origin_x}"
+    mesh_origin_y="${mesh_origin_y}"
+    mesh_origin_z="${mesh_origin_z}"
+    mesh_scale="${mesh_scale}"
+    stationary_mesh_roll="${stationary_mesh_roll}"
+    stationary_collision_size="${stationary_collision_size}"
+    stationary_collision_z="${stationary_collision_z}" />
 
-  <link name="ground_rails">
-    <inertial>
-      <origin xyz="0 0 0.03" rpy="0 0 0" />
-      <mass value="40.0" />
-      <inertia ixx="8.0" ixy="0" ixz="0" iyy="8.0" iyz="0" izz="8.0" />
-    </inertial>
-    <visual>
-      <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_origin_z}" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="file://$(find cyclus_description)/meshes/ground_rails.STL" scale="${mesh_scale}" />
-      </geometry>
-      <material name="steel_frame" />
-    </visual>
-    <collision>
-      <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_collision_z}" rpy="0 0 0" />
-      <geometry>
-        <box size="${ground_rails_collision_size}" />
-      </geometry>
-    </collision>
-  </link>
+  <xacro:cyclus_ground_rails
+    root_link="integrated_root"
+    mount_x="$(arg ground_rails_mount_x)"
+    mount_y="$(arg ground_rails_mount_y)"
+    mount_z="$(arg ground_rails_mount_z)"
+    ground_rails_origin_x="${ground_rails_origin_x}"
+    ground_rails_origin_y="${ground_rails_origin_y}"
+    ground_rails_origin_z="${ground_rails_origin_z}"
+    mesh_scale="${mesh_scale}"
+    ground_rails_collision_size="${ground_rails_collision_size}"
+    ground_rails_collision_z="${ground_rails_collision_z}" />
 
-  <joint name="integrated_root_to_right" type="fixed">
-    <parent link="integrated_root" />
-    <child link="stationary_structure_right" />
-    <origin xyz="0 ${right_pose_y} ${stationary_z_offset_value}" rpy="0 0 3.14159265358979" />
-  </joint>
+  <xacro:emrac_planar_mount prefix="emrac_1_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + 0.0}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />
+  <xacro:emrac_planar_mount prefix="emrac_2_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + float(emrac_stack_z_step_value)}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />
+  <xacro:emrac_planar_mount prefix="emrac_3_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + 2.0 * float(emrac_stack_z_step_value)}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />
+  <xacro:emrac_planar_mount prefix="emrac_4_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + 3.0 * float(emrac_stack_z_step_value)}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />
 
-  <joint name="integrated_root_to_left" type="fixed">
-    <parent link="integrated_root" />
-    <child link="stationary_structure_left" />
-    <origin xyz="0 ${left_pose_y} ${stationary_z_offset_value}" rpy="0 0 0" />
-  </joint>
-
-  <joint name="integrated_root_to_ground_rails" type="fixed">
-    <parent link="integrated_root" />
-    <child link="ground_rails" />
-    <origin xyz="$(arg ground_rails_mount_x) $(arg ground_rails_mount_y) $(arg ground_rails_mount_z)" rpy="0 0 0" />
-  </joint>
-
-  <xacro:macro name="emrac_planar_mount" params="prefix mount_z">
-    <link name="${prefix}slide_axis_1_carrier">
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.1" />
-        <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3" />
-      </inertial>
-    </link>
-
-    <link name="${prefix}slide_axis_2_carrier">
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.1" />
-        <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3" />
-      </inertial>
-    </link>
-
-    <joint name="${prefix}slide_axis_1" type="prismatic">
-      <origin xyz="$(arg emrac_mount_x) $(arg emrac_mount_y) ${mount_z}" rpy="0 0 0" />
-      <parent link="integrated_root" />
-      <child link="${prefix}slide_axis_1_carrier" />
-      <axis xyz="${emrac_axis_1_vector}" />
-      <limit lower="-${emrac_axis_1_limit}" upper="${emrac_axis_1_limit}" effort="50000.0" velocity="2.0" />
-      <dynamics damping="0.5" friction="0.0" />
-    </joint>
-
-    <joint name="${prefix}slide_axis_2" type="prismatic">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${prefix}slide_axis_1_carrier" />
-      <child link="${prefix}slide_axis_2_carrier" />
-      <axis xyz="${emrac_axis_2_vector}" />
-      <limit lower="-${emrac_axis_2_limit}" upper="${emrac_axis_2_limit}" effort="50000.0" velocity="2.0" />
-      <dynamics damping="0.5" friction="0.0" />
-    </joint>
-
-    <xacro:emrac_body_instance prefix="${prefix}" />
-
-    <joint name="${prefix}slide_axis_2_to_body_root" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${prefix}slide_axis_2_carrier" />
-      <child link="${prefix}emrac_body_root" />
-    </joint>
-
-    <gazebo reference="${prefix}slide_axis_1_carrier">
-      <gravity>false</gravity>
-      <self_collide>false</self_collide>
-    </gazebo>
-
-    <gazebo reference="${prefix}slide_axis_2_carrier">
-      <gravity>false</gravity>
-      <self_collide>false</self_collide>
-    </gazebo>
-  </xacro:macro>
-
-  <xacro:emrac_planar_mount prefix="emrac_1_" mount_z="${float(emrac_mount_z_value) + 0.0}" />
-  <xacro:emrac_planar_mount prefix="emrac_2_" mount_z="${float(emrac_mount_z_value) + float(emrac_stack_z_step_value)}" />
-  <xacro:emrac_planar_mount prefix="emrac_3_" mount_z="${float(emrac_mount_z_value) + 2.0 * float(emrac_stack_z_step_value)}" />
-  <xacro:emrac_planar_mount prefix="emrac_4_" mount_z="${float(emrac_mount_z_value) + 3.0 * float(emrac_stack_z_step_value)}" />
+  <xacro:emrac_control_plugin config_path="$(find cyclus_description)/config/cyclus_integrated_controllers.yaml" />
 
   <ros2_control name="GazeboSimSystem" type="system">
     <hardware>
       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
-
-    <joint name="emrac_1_slide_axis_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_slide_axis_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_slide_axis_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_slide_axis_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_slide_axis_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_slide_axis_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_slide_axis_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_slide_axis_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_base_to_lift_plate_carrier">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_arm_joint_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_arm_joint_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_arm_joint_3">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_1_arm_joint_4">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_base_to_lift_plate_carrier">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_arm_joint_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_arm_joint_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_arm_joint_3">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_2_arm_joint_4">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_base_to_lift_plate_carrier">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_arm_joint_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_arm_joint_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_arm_joint_3">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_3_arm_joint_4">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_base_to_lift_plate_carrier">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_arm_joint_1">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_arm_joint_2">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_arm_joint_3">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
-    <joint name="emrac_4_arm_joint_4">
-      <command_interface name="position" />
-      <state_interface name="position" />
-      <state_interface name="velocity" />
-    </joint>
+    <xacro:emrac_planar_ros2_control prefix="emrac_1_" />
+    <xacro:emrac_planar_ros2_control prefix="emrac_2_" />
+    <xacro:emrac_planar_ros2_control prefix="emrac_3_" />
+    <xacro:emrac_planar_ros2_control prefix="emrac_4_" />
+    <xacro:emrac_arm_ros2_control prefix="emrac_1_" />
+    <xacro:emrac_arm_ros2_control prefix="emrac_2_" />
+    <xacro:emrac_arm_ros2_control prefix="emrac_3_" />
+    <xacro:emrac_arm_ros2_control prefix="emrac_4_" />
   </ros2_control>
-
-  <gazebo>
-    <self_collide>false</self_collide>
-    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(find cyclus_description)/config/cyclus_integrated_controllers.yaml</parameters>
-      <controller_manager_node_name>controller_manager</controller_manager_node_name>
-    </plugin>
-  </gazebo>
-
-  <gazebo reference="integrated_root">
-    <gravity>false</gravity>
-    <self_collide>false</self_collide>
-  </gazebo>
-
-  <gazebo reference="stationary_structure_right">
-    <material>Gazebo/Grey</material>
-    <gravity>false</gravity>
-    <self_collide>false</self_collide>
-  </gazebo>
-
-  <gazebo reference="stationary_structure_left">
-    <material>Gazebo/Grey</material>
-    <gravity>false</gravity>
-    <self_collide>false</self_collide>
-  </gazebo>
-
-  <gazebo reference="ground_rails">
-    <material>Gazebo/Grey</material>
-    <gravity>false</gravity>
-    <self_collide>false</self_collide>
-  </gazebo>
 </robot>

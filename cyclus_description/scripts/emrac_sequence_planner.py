@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# File: emrac_sequence_planner.py
+# Purpose: Run a predefined integrated EMRAC motion sequence for the cyclus_description package.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
+
 import time
 
 import rclpy
@@ -16,15 +21,11 @@ class EmracSequencePlanner(Node):
         msg = Float64MultiArray()
         msg.data = [float(emrac_id), float(axis_1), float(axis_2)]
         self._planar_pub.publish(msg)
-        self.get_logger().info(f'EMRAC {emrac_id} planar -> [{axis_1}, {axis_2}]')
 
     def _publish_arm(self, emrac_id: int, plate: float, a1: float, a2: float, a3: float, a4: float) -> None:
         msg = Float64MultiArray()
         msg.data = [float(emrac_id), float(plate), float(a1), float(a2), float(a3), float(a4)]
         self._arm_pub.publish(msg)
-        self.get_logger().info(
-            f'EMRAC {emrac_id} arm -> plate {plate}, angles [{a1}, {a2}, {a3}, {a4}]'
-        )
 
     def _pause(self, seconds: float) -> None:
         end_time = time.time() + seconds
@@ -32,7 +33,6 @@ class EmracSequencePlanner(Node):
             rclpy.spin_once(self, timeout_sec=0.1)
 
     def run_sequence(self) -> None:
-        self.get_logger().info('Waiting 2 seconds for controllers/subscribers...')
         self._pause(2.0)
 
         self._publish_planar(1, 0.0, 0.41)
@@ -60,8 +60,6 @@ class EmracSequencePlanner(Node):
         self._pause(2.0)
         self._publish_planar(2, -1.5, -0.91)
         self._pause(2.0)
-
-        self.get_logger().info('Sequence complete.')
 
 
 def main() -> None:

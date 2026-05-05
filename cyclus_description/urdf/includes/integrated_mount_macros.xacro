@@ -1,0 +1,61 @@
+<!--
+  File: integrated_mount_macros.xacro
+  Purpose: Shared EMRAC planar mount macros for the integrated cyclus_description system.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="emrac_planar_mount" params="prefix mount_x mount_y mount_z axis_1_vector axis_2_vector axis_1_limit axis_2_limit">
+    <link name="${prefix}slide_axis_1_carrier">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}slide_axis_2_carrier">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-3" ixy="0" ixz="0" iyy="1e-3" iyz="0" izz="1e-3" />
+      </inertial>
+    </link>
+
+    <joint name="${prefix}slide_axis_1" type="prismatic">
+      <origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="0 0 0" />
+      <parent link="integrated_root" />
+      <child link="${prefix}slide_axis_1_carrier" />
+      <axis xyz="${axis_1_vector}" />
+      <limit lower="-${axis_1_limit}" upper="${axis_1_limit}" effort="50000.0" velocity="2.0" />
+      <dynamics damping="0.5" friction="0.0" />
+    </joint>
+
+    <joint name="${prefix}slide_axis_2" type="prismatic">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}slide_axis_1_carrier" />
+      <child link="${prefix}slide_axis_2_carrier" />
+      <axis xyz="${axis_2_vector}" />
+      <limit lower="-${axis_2_limit}" upper="${axis_2_limit}" effort="50000.0" velocity="2.0" />
+      <dynamics damping="0.5" friction="0.0" />
+    </joint>
+
+    <xacro:emrac_body_instance prefix="${prefix}" />
+
+    <joint name="${prefix}slide_axis_2_to_body_root" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}slide_axis_2_carrier" />
+      <child link="${prefix}emrac_body_root" />
+    </joint>
+
+    <gazebo reference="${prefix}slide_axis_1_carrier">
+      <gravity>false</gravity>
+      <self_collide>false</self_collide>
+    </gazebo>
+
+    <gazebo reference="${prefix}slide_axis_2_carrier">
+      <gravity>false</gravity>
+      <self_collide>false</self_collide>
+    </gazebo>
+  </xacro:macro>
+</robot>

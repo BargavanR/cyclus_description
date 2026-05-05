@@ -1,3 +1,7 @@
+# File: emrac_arm_controllers.yaml
+# Purpose: Standalone EMRAC arm controller definitions for the cyclus_description package.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
 controller_manager:
   ros__parameters:
     update_rate: 100

@@ -1,3 +1,7 @@
+# File: cyclus_integrated_controllers.yaml
+# Purpose: Integrated EMRAC planar and arm controller definitions for the cyclus_description package.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
 controller_manager:
   ros__parameters:
     update_rate: 100
@@ -13,6 +17,7 @@ controller_manager:
       type: position_controllers/JointGroupPositionController
     emrac_4_planar_controller:
       type: position_controllers/JointGroupPositionController
+
     emrac_1_arm_controller:
       type: position_controllers/JointGroupPositionController
     emrac_2_arm_controller:

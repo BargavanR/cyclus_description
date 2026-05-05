@@ -1,0 +1,65 @@
+<!--
+  File: stationary_components.xacro
+  Purpose: Shared stationary structure and ground rail macros for the cyclus_description package.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="cyclus_stationary_structure" params="root_link link_name mesh_name pose_y pose_z pose_yaw mesh_origin_x mesh_origin_y mesh_origin_z mesh_scale stationary_mesh_roll stationary_collision_size stationary_collision_z">
+    <link name="${link_name}">
+      <inertial>
+        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <mass value="50.0" />
+        <inertia ixx="10.0" ixy="0" ixz="0" iyy="10.0" iyz="0" izz="10.0" />
+      </inertial>
+      <visual>
+        <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${stationary_mesh_roll} 0 0" />
+        <geometry>
+          <mesh filename="file://$(find cyclus_description)/meshes/${mesh_name}" scale="${mesh_scale}" />
+        </geometry>
+        <material name="steel_frame" />
+      </visual>
+      <collision>
+        <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${stationary_collision_z}" rpy="0 0 0" />
+        <geometry>
+          <box size="${stationary_collision_size}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${root_link}_to_${link_name}" type="fixed">
+      <parent link="${root_link}" />
+      <child link="${link_name}" />
+      <origin xyz="0 ${pose_y} ${pose_z}" rpy="0 0 ${pose_yaw}" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="cyclus_ground_rails" params="root_link mount_x mount_y mount_z ground_rails_origin_x ground_rails_origin_y ground_rails_origin_z mesh_scale ground_rails_collision_size ground_rails_collision_z">
+    <link name="ground_rails">
+      <inertial>
+        <origin xyz="0 0 0.03" rpy="0 0 0" />
+        <mass value="40.0" />
+        <inertia ixx="8.0" ixy="0" ixz="0" iyy="8.0" iyz="0" izz="8.0" />
+      </inertial>
+      <visual>
+        <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_origin_z}" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find cyclus_description)/meshes/ground_rails.STL" scale="${mesh_scale}" />
+        </geometry>
+        <material name="steel_frame" />
+      </visual>
+      <collision>
+        <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_collision_z}" rpy="0 0 0" />
+        <geometry>
+          <box size="${ground_rails_collision_size}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${root_link}_to_ground_rails" type="fixed">
+      <parent link="${root_link}" />
+      <child link="ground_rails" />
+      <origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="0 0 0" />
+    </joint>
+  </xacro:macro>
+</robot>

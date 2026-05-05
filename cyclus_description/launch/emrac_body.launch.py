@@ -1,3 +1,8 @@
+# File: emrac_body.launch.py
+# Purpose: Launch the standalone EMRAC body model in Gazebo for the cyclus_description package.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
+
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -11,18 +16,13 @@ def generate_launch_description():
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_empty.world.sdf'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'emrac_body.urdf.xacro'])
 
-    robot_description = Command([
-        'xacro ',
-        xacro_file,
-    ])
+    robot_description = Command(['xacro ', xacro_file])
 
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ]),
-        launch_arguments={
-            'gz_args': ['-r ', world],
-        }.items(),
+        launch_arguments={'gz_args': ['-r ', world]}.items(),
     )
 
     robot_state_publisher = Node(
@@ -51,11 +51,7 @@ def generate_launch_description():
                 package='controller_manager',
                 executable='spawner',
                 output='screen',
-                arguments=[
-                    'joint_state_broadcaster',
-                    '--controller-manager',
-                    '/controller_manager',
-                ],
+                arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager'],
             )
         ],
     )
@@ -67,11 +63,7 @@ def generate_launch_description():
                 package='controller_manager',
                 executable='spawner',
                 output='screen',
-                arguments=[
-                    'arm_position_controller',
-                    '--controller-manager',
-                    '/controller_manager',
-                ],
+                arguments=['arm_position_controller', '--controller-manager', '/controller_manager'],
             )
         ],
     )

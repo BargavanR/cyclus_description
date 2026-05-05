@@ -1,0 +1,56 @@
+<!--
+  File: emrac_control_macros.xacro
+  Purpose: Shared ros2_control and Gazebo control macros for EMRAC models in the cyclus_description package.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="emrac_control_plugin" params="config_path">
+    <gazebo>
+      <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>${config_path}</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="emrac_arm_ros2_control" params="prefix">
+    <joint name="${prefix}base_to_lift_plate_carrier">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="${prefix}arm_joint_1">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="${prefix}arm_joint_2">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="${prefix}arm_joint_3">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="${prefix}arm_joint_4">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="emrac_planar_ros2_control" params="prefix">
+    <joint name="${prefix}slide_axis_1">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="${prefix}slide_axis_2">
+      <command_interface name="position" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+  </xacro:macro>
+</robot>

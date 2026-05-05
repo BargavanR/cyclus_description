@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# File: emrac_planar_cmd_bridge.py
+# Purpose: Bridge integrated EMRAC planar commands to the selected planar controller.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
+
 import rclpy
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
@@ -14,14 +19,9 @@ class EmracPlanarCommandBridge(Node):
             3: self.create_publisher(Float64MultiArray, '/emrac_3_planar_controller/commands', 10),
             4: self.create_publisher(Float64MultiArray, '/emrac_4_planar_controller/commands', 10),
         }
-        self._sub = self.create_subscription(
-            Float64MultiArray,
-            '/emrac_planar_cmd',
-            self._handle_cmd,
-            10,
-        )
+        self.create_subscription(Float64MultiArray, '/emrac_planar_cmd', self._handle_cmd, 10)
         self.get_logger().info(
-            'Listening on /emrac_planar_cmd and forwarding [emrac_id, axis_1_m, axis_2_m] to /emrac_<id>_planar_controller/commands'
+            'Listening on /emrac_planar_cmd and forwarding [emrac_id, axis_1_m, axis_2_m]'
         )
 
     def _handle_cmd(self, msg: Float64MultiArray) -> None:

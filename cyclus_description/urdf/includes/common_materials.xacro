@@ -1,0 +1,25 @@
+<!--
+  File: common_materials.xacro
+  Purpose: Shared visual materials for the cyclus_description package.
+  Author: BARGAVAN R
+  Contact: bargavanr01@gmail.com
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="cyclus_shared_materials">
+    <material name="steel_frame">
+      <color rgba="0.25 0.25 0.25 1.0" />
+    </material>
+
+    <material name="carrier_charcoal">
+      <color rgba="0.36 0.38 0.40 1.0" />
+    </material>
+
+    <material name="carrier_black">
+      <color rgba="0.24 0.25 0.27 1.0" />
+    </material>
+
+    <material name="lift_plate_grey">
+      <color rgba="0.78 0.78 0.76 1.0" />
+    </material>
+  </xacro:macro>
+</robot>

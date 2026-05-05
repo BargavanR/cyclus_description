@@ -3,7 +3,7 @@
   <name>cyclus_description</name>
   <version>0.0.1</version>
   <description>Cyclus description package for static structure visualization in Gazebo Fortress.</description>
-  <maintainer email="bargavan@example.com">bargavan</maintainer>
+  <maintainer email="bargavanr01@gmail.com">bargavan</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

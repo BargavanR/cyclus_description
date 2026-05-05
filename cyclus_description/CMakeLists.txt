@@ -1,3 +1,8 @@
+# File: CMakeLists.txt
+# Purpose: Build and install the cyclus_description package assets and helper scripts.
+# Author: BARGAVAN R
+# Contact: bargavanr01@gmail.com
+
 cmake_minimum_required(VERSION 3.8)
 project(cyclus_description)
 
