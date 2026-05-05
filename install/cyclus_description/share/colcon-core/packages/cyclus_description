@@ -1,1 +1,0 @@
-controller_manager:gz_ros2_control:joint_state_broadcaster:launch:launch_ros:position_controllers:rclpy:robot_state_publisher:ros_gz_sim:std_msgs:xacro

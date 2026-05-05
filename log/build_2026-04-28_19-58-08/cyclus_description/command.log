@@ -1,6 +1,0 @@
-Invoking command in '/home/bargavan/cyclus/build/cyclus_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/bargavan/cyclus/src/cyclus_description -DCMAKE_INSTALL_PREFIX=/home/bargavan/cyclus/install/cyclus_description
-Invoked command in '/home/bargavan/cyclus/build/cyclus_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/bargavan/cyclus/src/cyclus_description -DCMAKE_INSTALL_PREFIX=/home/bargavan/cyclus/install/cyclus_description
-Invoking command in '/home/bargavan/cyclus/build/cyclus_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/bargavan/cyclus/build/cyclus_description -- -j8 -l8
-Invoked command in '/home/bargavan/cyclus/build/cyclus_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/bargavan/cyclus/build/cyclus_description -- -j8 -l8
-Invoking command in '/home/bargavan/cyclus/build/cyclus_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/bargavan/cyclus/build/cyclus_description
-Invoked command in '/home/bargavan/cyclus/build/cyclus_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/bargavan/cyclus/build/cyclus_description

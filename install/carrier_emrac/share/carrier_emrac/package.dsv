@@ -1,6 +1,0 @@
-source;share/carrier_emrac/hook/pythonpath.ps1
-source;share/carrier_emrac/hook/pythonpath.dsv
-source;share/carrier_emrac/hook/pythonpath.sh
-source;share/carrier_emrac/hook/ament_prefix_path.ps1
-source;share/carrier_emrac/hook/ament_prefix_path.dsv
-source;share/carrier_emrac/hook/ament_prefix_path.sh

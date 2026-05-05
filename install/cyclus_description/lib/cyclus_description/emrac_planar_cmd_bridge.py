@@ -1,1 +1,0 @@
-/home/bargavan/cyclus/src/cyclus_description/scripts/emrac_planar_cmd_bridge.py
