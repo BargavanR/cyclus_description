@@ -1,1 +1,249 @@
-/home/bargavan/cyclus/build/carrier_emrac/urdf/carrier_emrac.xacro
+<robot name="carrier_emrac">
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.231326122438629 -0.729625066059866 -0.384275142354278" rpy="0 0 0" />
+      <mass value="66.8400447533962" />
+      <inertia ixx="0.126647867330863" ixy="1.09468303143366E-14" ixz="1.49222860415562E-14" iyy="0.489903098665309" iyz="-7.74690196420397E-11" izz="0.480399430509725" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="docking_1">
+    <inertial>
+      <origin xyz="1.57308467822174 0.780045273498867 -0.0905675614190253" rpy="0 0 0" />
+      <mass value="0.0202336294869927" />
+      <inertia ixx="9.72507400857707E-07" ixy="-2.37554290260085E-20" ixz="1.13271025171526E-20" iyy="8.0553172643547E-06" iyz="3.70971200079535E-35" izz="8.0553172643547E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/docking_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/docking_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="dock_joint_1" type="fixed">
+    <origin xyz="-1.90167019372611 -0.688928868898414 0.456357618202888" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="docking_1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="dock_arm_1">
+    <inertial>
+      <origin xyz="-0.000499999999999778 -0.000407762481728469 -0.000569115410858689" rpy="0 0 0" />
+      <mass value="0.00150072453201757" />
+      <inertia ixx="5.7113098325987E-07" ixy="-2.09373257761955E-22" ixz="-9.42175268372246E-22" iyy="3.76033847997044E-07" iyz="6.32661441841782E-11" izz="1.95347256018162E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/dock_arm_1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/dock_arm_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint_1" type="continuous">
+    <origin xyz="1.53958467822174 0.780045273498867 -0.0905675614190252" rpy="-1.57079632679425 0 -3.14159265358979" />
+    <parent link="docking_1" />
+    <child link="dock_arm_1" />
+    <axis xyz="-1 0 0" />
+  </joint>
+  <link name="docking_2">
+    <inertial>
+      <origin xyz="1.57325903320313 0.822636592430764 -0.0944039787894341" rpy="0 0 0" />
+      <mass value="0.0202336294869927" />
+      <inertia ixx="9.72507400857707E-07" ixy="-2.37554290260085E-20" ixz="1.13271025171526E-20" iyy="8.0553172643547E-06" iyz="3.90082702343961E-35" izz="8.0553172643547E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/docking_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/docking_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="docking_joint_2" type="fixed">
+    <origin xyz="-0.85761797977807 -0.693687257483896 0.414480042632792" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="docking_2" />
+    <axis xyz="1 0 0" />
+  </joint>
+  <link name="dock_arm_2">
+    <inertial>
+      <origin xyz="0.030939911474413 0.000569115410858911 0.000407762481728025" rpy="0 0 0" />
+      <mass value="0.00150072453201757" />
+      <inertia ixx="5.7113098325987E-07" ixy="6.42213640349087E-22" ixz="1.33311741135265E-22" iyy="1.95347256018162E-07" iyz="6.32661443007841E-11" izz="3.76033847997044E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/dock_arm_2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/dock_arm_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint_2" type="continuous">
+    <origin xyz="1.50831912172871 0.822636592430764 -0.094403978789434" rpy="0 0 0" />
+    <parent link="docking_2" />
+    <child link="dock_arm_2" />
+    <axis xyz="1 0 0" />
+  </joint>
+  <link name="docking_3">
+    <inertial>
+      <origin xyz="1.57325903320313 0.822636592430764 -0.0944039787894342" rpy="0 0 0" />
+      <mass value="0.0202336294869927" />
+      <inertia ixx="9.72507400857707E-07" ixy="-2.37554290260085E-20" ixz="1.13271025171526E-20" iyy="8.0553172643547E-06" iyz="3.78249840438576E-35" izz="8.0553172643547E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/docking_3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/docking_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="docking_joint_3" type="fixed">
+    <origin xyz="-1.89847364561348 -0.683810169290989 -1.15695984220038" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="docking_3" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="dock_arm_3">
+    <inertial>
+      <origin xyz="0.974355659733319 -0.00103549815645604 -0.00165333769388842" rpy="0 0 0" />
+      <mass value="0.00150072453201743" />
+      <inertia ixx="5.71130983246695E-07" ixy="-2.2206301702031E-12" ixz="3.7386126927141E-16" iyy="1.95347256031264E-07" iyz="6.32661442999355E-11" izz="3.76033847997012E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/dock_arm_3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/dock_arm_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint_3" type="continuous">
+    <origin xyz="2.58061469903853 0.821037736652904 -0.0923428786138167" rpy="0 0 -3.14158674425948" />
+    <parent link="docking_3" />
+    <child link="dock_arm_3" />
+    <axis xyz="-0.99999999998254 0 0" />
+  </joint>
+  <link name="docking_4">
+    <inertial>
+      <origin xyz="1.57325903320313 0.822636592430764 -0.0944039787894342" rpy="0 0 0" />
+      <mass value="0.0202336294869927" />
+      <inertia ixx="9.72507400857707E-07" ixy="-2.37554290260085E-20" ixz="1.13271025171526E-20" iyy="8.0553172643547E-06" iyz="3.78249840438577E-35" izz="8.0553172643547E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/docking_4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/docking_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="docking_arm_4" type="fixed">
+    <origin xyz="-0.857617979778071 -0.686214402146105 -1.15890213114568" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="docking_4" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="dock_arm_4">
+    <inertial>
+      <origin xyz="-1.13743235222051 0.000575836874332936 0.000407762481724361" rpy="0 0 0" />
+      <mass value="0.00150072453201743" />
+      <inertia ixx="5.71130983246695E-07" ixy="-2.220630166025E-12" ixz="3.73861273025674E-16" iyy="1.95347256031264E-07" iyz="6.32661442998097E-11" izz="3.76033847997012E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/visual/dock_arm_4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://carrier_emrac/meshes/collision/dock_arm_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint_4" type="continuous">
+    <origin xyz="0.468826677599663 0.82263659243076 -0.0944039787894324" rpy="0 0 -3.14158674425949" />
+    <parent link="docking_4" />
+    <child link="dock_arm_4" />
+    <axis xyz="0.99999999998254 0 0" />
+  </joint>
+</robot>

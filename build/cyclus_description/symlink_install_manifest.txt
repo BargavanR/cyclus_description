@@ -21,9 +21,11 @@
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/cyclus_stationary_scene.urdf.xacro
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body.urdf.xacro
+/home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/urdf/emrac_body_macro.xacro
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/worlds/cyclus_empty.world.sdf
 /home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/arm_deg_cmd_bridge.py
 /home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/emrac_planar_cmd_bridge.py
+/home/bargavan/cyclus/install/cyclus_description/lib/cyclus_description/emrac_sequence_planner.py
 /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/package_run_dependencies/cyclus_description
 /home/bargavan/cyclus/install/cyclus_description/share/ament_index/resource_index/parent_prefix_path/cyclus_description
 /home/bargavan/cyclus/install/cyclus_description/share/cyclus_description/environment/ament_prefix_path.sh

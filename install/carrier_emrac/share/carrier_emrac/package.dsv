@@ -4,6 +4,3 @@ source;share/carrier_emrac/hook/pythonpath.sh
 source;share/carrier_emrac/hook/ament_prefix_path.ps1
 source;share/carrier_emrac/hook/ament_prefix_path.dsv
 source;share/carrier_emrac/hook/ament_prefix_path.sh
-source;../../build/carrier_emrac/share/carrier_emrac/hook/pythonpath_develop.ps1
-source;../../build/carrier_emrac/share/carrier_emrac/hook/pythonpath_develop.dsv
-source;../../build/carrier_emrac/share/carrier_emrac/hook/pythonpath_develop.sh
