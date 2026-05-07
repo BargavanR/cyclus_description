@@ -16,6 +16,12 @@
   <xacro:arg name="ground_rails_mount_x" default="1.9" />
   <xacro:arg name="ground_rails_mount_y" default="-0.02" />
   <xacro:arg name="ground_rails_mount_z" default="0.5" />
+  <xacro:arg name="tesla_mount_x" default="1.6" />
+  <xacro:arg name="tesla_mount_y" default="2.2" />
+  <xacro:arg name="tesla_mount_z" default="0.6" />
+  <xacro:arg name="tesla_mount_roll" default="1.570796" />
+  <xacro:arg name="tesla_mount_pitch" default="0.0" />
+  <xacro:arg name="tesla_mount_yaw" default="0.0" />
   <xacro:arg name="emrac_axis_1_xyz" default="1,0,0" />
   <xacro:arg name="emrac_axis_2_xyz" default="0,0,-1" />
   <xacro:arg name="emrac_axis_1_limit_m" default="10.0" />
@@ -38,6 +44,10 @@
   <xacro:property name="ground_rails_origin_z" value="0.3634481812" />
   <xacro:property name="ground_rails_collision_size" value="3.3853313599 2.1556440430 0.0588344116" />
   <xacro:property name="ground_rails_collision_z" value="0.0294172058" />
+  <xacro:property name="tesla_mesh_scale" value="0.001 0.001 0.001" />
+  <xacro:property name="tesla_mesh_origin_x" value="0.0" />
+  <xacro:property name="tesla_mesh_origin_y" value="0.0" />
+  <xacro:property name="tesla_mesh_origin_z" value="0.0" />
 
   <xacro:property name="structure_gap_mm_value" value="$(arg structure_gap_mm)" />
   <xacro:property name="stationary_z_offset_value" value="$(arg stationary_z_offset)" />
@@ -74,6 +84,7 @@
     root_link="integrated_root"
     link_name="stationary_structure_right"
     mesh_name="stationary_structure_right.STL"
+    material_name="rail_bronze"
     pose_y="${right_pose_y}"
     pose_z="${stationary_z_offset_value}"
     pose_yaw="3.14159265358979"
@@ -89,6 +100,7 @@
     root_link="integrated_root"
     link_name="stationary_structure_left"
     mesh_name="stationary_structure_left.STL"
+    material_name="rail_bronze"
     pose_y="${left_pose_y}"
     pose_z="${stationary_z_offset_value}"
     pose_yaw="0"
@@ -102,15 +114,40 @@
 
   <xacro:cyclus_ground_rails
     root_link="integrated_root"
+    link_name="ground_rails"
+    mesh_name="ground_rails.STL"
+    material_name="rail_bronze"
     mount_x="$(arg ground_rails_mount_x)"
     mount_y="$(arg ground_rails_mount_y)"
     mount_z="$(arg ground_rails_mount_z)"
+    mount_roll="0"
+    mount_pitch="0"
+    mount_yaw="0"
     ground_rails_origin_x="${ground_rails_origin_x}"
     ground_rails_origin_y="${ground_rails_origin_y}"
     ground_rails_origin_z="${ground_rails_origin_z}"
     mesh_scale="${mesh_scale}"
     ground_rails_collision_size="${ground_rails_collision_size}"
     ground_rails_collision_z="${ground_rails_collision_z}" />
+
+  <xacro:cyclus_visual_mesh
+    root_link="integrated_root"
+    link_name="tesla_electric_vehicle"
+    mesh_name="tesla_electric_vehicle.STL"
+    material_name="cybertruck_steel"
+    mount_x="$(arg tesla_mount_x)"
+    mount_y="$(arg tesla_mount_y)"
+    mount_z="$(arg tesla_mount_z)"
+    mount_roll="$(arg tesla_mount_roll)"
+    mount_pitch="$(arg tesla_mount_pitch)"
+    mount_yaw="$(arg tesla_mount_yaw)"
+    mesh_origin_x="${tesla_mesh_origin_x}"
+    mesh_origin_y="${tesla_mesh_origin_y}"
+    mesh_origin_z="${tesla_mesh_origin_z}"
+    mesh_roll="0"
+    mesh_pitch="0"
+    mesh_yaw="0"
+    mesh_scale="${tesla_mesh_scale}" />
 
   <xacro:emrac_planar_mount prefix="emrac_1_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + 0.0}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />
   <xacro:emrac_planar_mount prefix="emrac_2_" mount_x="${emrac_mount_x_value}" mount_y="${emrac_mount_y_value}" mount_z="${float(emrac_mount_z_value) + float(emrac_stack_z_step_value)}" axis_1_vector="${emrac_axis_1_vector}" axis_2_vector="${emrac_axis_2_vector}" axis_1_limit="${emrac_axis_1_limit}" axis_2_limit="${emrac_axis_2_limit}" />

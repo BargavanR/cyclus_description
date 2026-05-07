@@ -62,7 +62,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_1.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="carrier_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -88,7 +88,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_1.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="rail_bronze" />
     </visual>
     <collision>
       <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -116,7 +116,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_2.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="carrier_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -142,7 +142,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_2.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="rail_bronze" />
     </visual>
     <collision>
       <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -170,7 +170,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_3.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="carrier_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -196,7 +196,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_3.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="rail_bronze" />
     </visual>
     <collision>
       <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -224,7 +224,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_4.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="carrier_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -250,7 +250,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_4.STL" />
       </geometry>
-      <material name="carrier_black" />
+      <material name="rail_bronze" />
     </visual>
     <collision>
       <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -287,7 +287,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/emrac/EMRAC Lift Plate Dwn Pos 1.stl" scale="${lift_plate_scale}" />
       </geometry>
-      <material name="lift_plate_grey" />
+      <material name="rail_bronze" />
     </visual>
     <collision>
       <origin xyz="${lift_plate_origin_x} ${lift_plate_origin_y} ${lift_plate_origin_z}" rpy="${lift_plate_roll} 0 0" />
@@ -302,7 +302,7 @@
     <parent link="${prefix}base_link"/>
     <child link="${prefix}lift_plate_carrier"/>
     <axis xyz="0 -1 0" />
-    <limit lower="-${lift_plate_travel}" upper="${lift_plate_travel}" effort="1000.0" velocity="0.58" />
+    <limit lower="-${lift_plate_travel}" upper="${lift_plate_travel}" effort="1000.0" velocity="0.55" />
     <dynamics damping="1.0" friction="0.05" />
   </joint>
 
@@ -313,19 +313,16 @@
   </joint>
 
   <gazebo reference="${prefix}base_link">
-    <material>Gazebo/Grey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="${prefix}docking_1">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="${prefix}dock_arm_1">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
     <mu1>2.0</mu1>
@@ -333,13 +330,11 @@
   </gazebo>
 
   <gazebo reference="${prefix}docking_2">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="${prefix}dock_arm_2">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
     <mu1>2.0</mu1>
@@ -347,13 +342,11 @@
   </gazebo>
 
   <gazebo reference="${prefix}docking_3">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="${prefix}dock_arm_3">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
     <mu1>2.0</mu1>
@@ -361,13 +354,11 @@
   </gazebo>
 
   <gazebo reference="${prefix}docking_4">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
   <gazebo reference="${prefix}dock_arm_4">
-    <material>Gazebo/DarkGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
     <mu1>2.0</mu1>
@@ -380,7 +371,6 @@
   </gazebo>
 
   <gazebo reference="${prefix}lift_plate">
-    <material>Gazebo/LightGrey</material>
     <gravity>false</gravity>
     <self_collide>false</self_collide>
     <mu1>2.0</mu1>

@@ -5,7 +5,7 @@
   Contact: bargavanr01@gmail.com
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="cyclus_stationary_structure" params="root_link link_name mesh_name pose_y pose_z pose_yaw mesh_origin_x mesh_origin_y mesh_origin_z mesh_scale stationary_mesh_roll stationary_collision_size stationary_collision_z">
+  <xacro:macro name="cyclus_stationary_structure" params="root_link link_name mesh_name material_name pose_y pose_z pose_yaw mesh_origin_x mesh_origin_y mesh_origin_z mesh_scale stationary_mesh_roll stationary_collision_size stationary_collision_z">
     <link name="${link_name}">
       <inertial>
         <origin xyz="0 0 0.05" rpy="0 0 0" />
@@ -17,7 +17,7 @@
         <geometry>
           <mesh filename="file://$(find cyclus_description)/meshes/${mesh_name}" scale="${mesh_scale}" />
         </geometry>
-        <material name="steel_frame" />
+        <material name="${material_name}" />
       </visual>
       <collision>
         <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${stationary_collision_z}" rpy="0 0 0" />
@@ -34,8 +34,8 @@
     </joint>
   </xacro:macro>
 
-  <xacro:macro name="cyclus_ground_rails" params="root_link mount_x mount_y mount_z ground_rails_origin_x ground_rails_origin_y ground_rails_origin_z mesh_scale ground_rails_collision_size ground_rails_collision_z">
-    <link name="ground_rails">
+  <xacro:macro name="cyclus_ground_rails" params="root_link link_name mesh_name material_name mount_x mount_y mount_z mount_roll mount_pitch mount_yaw ground_rails_origin_x ground_rails_origin_y ground_rails_origin_z mesh_scale ground_rails_collision_size ground_rails_collision_z">
+    <link name="${link_name}">
       <inertial>
         <origin xyz="0 0 0.03" rpy="0 0 0" />
         <mass value="40.0" />
@@ -44,9 +44,9 @@
       <visual>
         <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_origin_z}" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find cyclus_description)/meshes/ground_rails.STL" scale="${mesh_scale}" />
+          <mesh filename="file://$(find cyclus_description)/meshes/${mesh_name}" scale="${mesh_scale}" />
         </geometry>
-        <material name="steel_frame" />
+        <material name="${material_name}" />
       </visual>
       <collision>
         <origin xyz="${ground_rails_origin_x} ${ground_rails_origin_y} ${ground_rails_collision_z}" rpy="0 0 0" />
@@ -56,10 +56,33 @@
       </collision>
     </link>
 
-    <joint name="${root_link}_to_ground_rails" type="fixed">
+    <joint name="${root_link}_to_${link_name}" type="fixed">
       <parent link="${root_link}" />
-      <child link="ground_rails" />
-      <origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="0 0 0" />
+      <child link="${link_name}" />
+      <origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="${mount_roll} ${mount_pitch} ${mount_yaw}" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="cyclus_visual_mesh" params="root_link link_name mesh_name material_name mount_x mount_y mount_z mount_roll mount_pitch mount_yaw mesh_origin_x mesh_origin_y mesh_origin_z mesh_roll mesh_pitch mesh_yaw mesh_scale">
+    <link name="${link_name}">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="10.0" />
+        <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+      </inertial>
+      <visual>
+        <origin xyz="${mesh_origin_x} ${mesh_origin_y} ${mesh_origin_z}" rpy="${mesh_roll} ${mesh_pitch} ${mesh_yaw}" />
+        <geometry>
+          <mesh filename="file://$(find cyclus_description)/meshes/${mesh_name}" scale="${mesh_scale}" />
+        </geometry>
+        <material name="${material_name}" />
+      </visual>
+    </link>
+
+    <joint name="${root_link}_to_${link_name}" type="fixed">
+      <parent link="${root_link}" />
+      <child link="${link_name}" />
+      <origin xyz="${mount_x} ${mount_y} ${mount_z}" rpy="${mount_roll} ${mount_pitch} ${mount_yaw}" />
     </joint>
   </xacro:macro>
 </robot>

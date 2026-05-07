@@ -19,11 +19,13 @@ def generate_launch_description():
     emrac_axis_1_xyz = LaunchConfiguration('emrac_axis_1_xyz')
     emrac_axis_2_xyz = LaunchConfiguration('emrac_axis_2_xyz')
 
+
     robot_description = ParameterValue(Command([
         'xacro ',
         xacro_file,
         ' emrac_axis_1_xyz:=', emrac_axis_1_xyz,
         ' emrac_axis_2_xyz:=', emrac_axis_2_xyz,
+
     ]), value_type=str)
 
     gz_sim = IncludeLaunchDescription(
@@ -104,6 +106,7 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument('emrac_axis_1_xyz', default_value='1,0,0'),
         DeclareLaunchArgument('emrac_axis_2_xyz', default_value='0,0,-1'),
+
         gz_sim,
         robot_state_publisher,
         spawn_entity,
