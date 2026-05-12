@@ -2,10 +2,6 @@
 
 This workspace contains the `cyclus_description` ROS 2 package for the Cyclus stationary frame, the EMRAC carrier assemblies, and the integrated Gazebo simulation used for motion testing.
 
-## Author
-
-BARGAVAN R  
-bargavanr01@gmail.com
 
 ## Project Description
 
@@ -40,6 +36,73 @@ Shared materials, control macros, stationary structure macros, and integrated mo
 `cyclus_description/worlds/` contains the Gazebo world used for simulation.
 
 
+## ROS 2 Setup
+
+This package is intended for ROS 2 Humble on Ubuntu 22.04 with Gazebo Fortress. Start with the ROS 2 Desktop installation, then add the Gazebo and ros2_control packages used by the Cyclus simulation.
+
+Official references:
+
+- ROS 2 Humble Ubuntu install: https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+- ROS 2 Humble colcon tutorial: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html
+- ROS/Gazebo integration package: https://docs.ros.org/en/humble/p/ros_gz/
+- gz_ros2_control Humble install: https://control.ros.org/humble/doc/gz_ros2_control/doc/index.html
+
+### 1. Install ROS 2 Humble Desktop
+
+Follow the official ROS 2 Humble Ubuntu deb setup first: set locale, enable the Ubuntu Universe repository, add the ROS 2 apt source, then update apt.
+
+After the ROS 2 apt source is configured, install ROS 2 Desktop and the standard ROS development tools:
+
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install ros-humble-desktop ros-dev-tools python3-colcon-common-extensions
+```
+
+Source ROS 2 in every terminal that will build or run the package:
+
+```bash
+source /opt/ros/humble/setup.bash
+```
+
+Optional: add the source command to `~/.bashrc` so new terminals are ready automatically.
+
+```bash
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+```
+
+### 2. Install Cyclus ROS/Gazebo dependencies
+
+Install the packages required by `cyclus_description/package.xml`, the launch files, the Xacro files, and the controller YAML:
+
+```bash
+sudo apt update
+sudo apt install \
+  ros-humble-ros-gz \
+  ros-humble-gz-ros2-control \
+  ros-humble-controller-manager \
+  ros-humble-joint-state-broadcaster \
+  ros-humble-position-controllers \
+  ros-humble-robot-state-publisher \
+  ros-humble-xacro \
+  ros-humble-rclpy \
+  ros-humble-std-msgs \
+  ros-humble-launch \
+  ros-humble-launch-ros
+```
+
+What these provide:
+
+- `ros-humble-desktop`: ROS 2 Humble desktop tools, RViz, demos, and common runtime packages.
+- `ros-dev-tools` and `python3-colcon-common-extensions`: build and workspace tools for `colcon build`.
+- `ros-humble-ros-gz`: ROS 2 integration packages for Gazebo, including `ros_gz_sim`, which this package uses to launch Gazebo.
+- `ros-humble-gz-ros2-control`: Gazebo Sim plugin for `ros2_control`; required by `libgz_ros2_control-system.so` and `gz_ros2_control/GazeboSimSystem` in the URDF/Xacro files.
+- `ros-humble-controller-manager`: provides the `spawner` executable used by the launch files.
+- `ros-humble-joint-state-broadcaster` and `ros-humble-position-controllers`: provide the controller types used in `config/*.yaml`.
+- `ros-humble-robot-state-publisher` and `ros-humble-xacro`: publish and generate the robot description from Xacro.
+- `ros-humble-rclpy` and `ros-humble-std-msgs`: required by the Python helper nodes in `scripts/`.
+- `ros-humble-launch` and `ros-humble-launch-ros`: required by the Python launch files.
+
 ## Running Setup
 
 Create the workspace and clone the repository into the `src` folder.
@@ -54,6 +117,7 @@ Move to the workspace root, build the workspace, and source the setup file.
 
 ```bash
 cd ..
+source /opt/ros/humble/setup.bash
 colcon build
 source install/setup.bash
 ```
