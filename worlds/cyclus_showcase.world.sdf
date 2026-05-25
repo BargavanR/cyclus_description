@@ -17,11 +17,11 @@
       <shadows>true</shadows>
       <grid>false</grid>
       <origin_visual>false</origin_visual>
-      <sky>
-        <time>14.5</time>
+      <!-- <sky>
+        <time>12</time>
         <sunrise>6</sunrise>
-        <sunset>20</sunset>
-      </sky>
+        <sunset>18</sunset>
+      </sky> -->
     </scene>
 
     <light name="sun_main" type="directional">
@@ -84,8 +84,7 @@
             <specular>0.04 0.04 0.04 1.0</specular>
             <pbr>
               <metal>
-                <albedo_map>file:///home/bargavan/cyclus_desc/src/cyclus_description/materials/textures/showcase_ground_albedo.png</albedo_map>
-                <roughness>0.95</roughness>
+                <albedo_map>../materials/textures/showcase_ground_albedo.png</albedo_map>                <roughness>0.95</roughness>
                 <metalness>0.0</metalness>
               </metal>
             </pbr>
