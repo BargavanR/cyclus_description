@@ -14,7 +14,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     pkg_share = FindPackageShare('cyclus_description')
-    world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_empty.world.sdf'])
+    world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_showcase.world.sdf'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_integrated_system.urdf.xacro'])
     emrac_axis_1_xyz = LaunchConfiguration('emrac_axis_1_xyz')
     emrac_axis_2_xyz = LaunchConfiguration('emrac_axis_2_xyz')

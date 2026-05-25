@@ -13,7 +13,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     pkg_share = FindPackageShare('cyclus_description')
-    world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_empty.world.sdf'])
+    world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_showcase.world.sdf'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_stationary_scene.urdf.xacro'])
     structure_gap_mm = LaunchConfiguration('structure_gap_mm')
 
