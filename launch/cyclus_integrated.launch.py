@@ -55,7 +55,7 @@ def generate_launch_description():
     )
 
     joint_state_broadcaster_spawner = TimerAction(
-        period=5.0,
+        period=10.0,
         actions=[
             Node(
                 package='controller_manager',
@@ -67,14 +67,14 @@ def generate_launch_description():
     )
 
     spawner_specs = [
-        (7.0, 'emrac_1_planar_controller'),
-        (9.0, 'emrac_2_planar_controller'),
-        (11.0, 'emrac_3_planar_controller'),
-        (13.0, 'emrac_4_planar_controller'),
-        (15.0, 'emrac_1_arm_controller'),
-        (17.0, 'emrac_2_arm_controller'),
-        (19.0, 'emrac_3_arm_controller'),
-        (21.0, 'emrac_4_arm_controller'),
+        (12.0, 'emrac_1_planar_controller'),
+        (14.0, 'emrac_2_planar_controller'),
+        (16.0, 'emrac_3_planar_controller'),
+        (18.0, 'emrac_4_planar_controller'),
+        (20.0, 'emrac_1_arm_controller'),
+        (22.0, 'emrac_2_arm_controller'),
+        (24.0, 'emrac_3_arm_controller'),
+        (26.0, 'emrac_4_arm_controller'),
     ]
     controller_spawners = [
         TimerAction(

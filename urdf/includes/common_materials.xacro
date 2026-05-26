@@ -34,9 +34,102 @@
       <color rgba="0.82 0.84 0.86 1.0" />
     </material>
 
+    <material name="emrac_body_grey">
+      <color rgba="0.52941 0.54902 0.54902 1.0" />
+    </material>
+
+    <material name="emrac_light_blue">
+      <color rgba="0.79216 0.81961 0.93333 1.0" />
+    </material>
+
+    <material name="emrac_medium_grey">
+      <color rgba="0.49804 0.49804 0.49804 1.0" />
+    </material>
+
     <!-- Cybertruck Stainless Steel -->
     <material name="cybertruck_steel">
       <color rgba="0.62 0.64 0.66 1.0" />
+    </material>
+
+    <!-- Professional Colors for New Components -->
+    <material name="industrial_dark_grey">
+      <color rgba="0.25 0.25 0.25 1.0" />
+    </material>
+
+    <material name="professional_blue">
+      <color rgba="0.16 0.39 0.68 1.0" />
+    </material>
+
+    <material name="carbon_grey">
+      <color rgba="0.35 0.35 0.37 1.0" />
+    </material>
+
+    <material name="slate_dark">
+      <color rgba="0.28 0.32 0.36 1.0" />
+    </material>
+
+    <material name="metallic_charcoal">
+      <color rgba="0.31 0.32 0.33 1.0" />
+    </material>
+        <!-- Additional Standard Colors -->
+    <material name="industrial_red">
+      <color rgba="0.78 0.18 0.18 1.0" />
+    </material>
+
+    <material name="deep_red">
+      <color rgba="0.55 0.08 0.08 1.0" />
+    </material>
+
+    <material name="signal_green">
+      <color rgba="0.18 0.62 0.24 1.0" />
+    </material>
+
+    <material name="forest_green">
+      <color rgba="0.13 0.39 0.16 1.0" />
+    </material>
+
+    <material name="lime_green">
+      <color rgba="0.56 0.80 0.22 1.0" />
+    </material>
+
+    <material name="royal_purple">
+      <color rgba="0.42 0.24 0.60 1.0" />
+    </material>
+
+    <material name="deep_purple">
+      <color rgba="0.30 0.12 0.45 1.0" />
+    </material>
+
+    <material name="violet">
+      <color rgba="0.58 0.40 0.74 1.0" />
+    </material>
+
+    <material name="bright_orange">
+      <color rgba="0.90 0.45 0.10 1.0" />
+    </material>
+
+    <material name="warning_yellow">
+      <color rgba="0.95 0.82 0.18 1.0" />
+    </material>
+
+    <material name="sky_blue">
+      <color rgba="0.35 0.67 0.93 1.0" />
+    </material>
+
+    <material name="cyan_blue">
+      <color rgba="0.12 0.72 0.78 1.0" />
+    </material>
+
+    <material name="matte_black">
+      <color rgba="0.08 0.08 0.08 1.0" />
+    </material>
+
+    <material name="pure_white">
+      <color rgba="0.96 0.96 0.96 1.0" />
+    </material>
+
+    <material name="silver_metallic">
+      <color rgba="0.75 0.76 0.78 1.0" />
     </material>
   </xacro:macro>
 </robot>

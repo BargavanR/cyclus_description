@@ -42,7 +42,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/base_link.STL" />
       </geometry>
-      <material name="carrier_charcoal" />
+      <material name="emrac_body_grey" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -62,7 +62,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_1.STL" />
       </geometry>
-      <material name="carrier_blue" />
+      <material name="emrac_light_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -88,7 +88,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_1.STL" />
       </geometry>
-      <material name="rail_bronze" />
+      <material name="emrac_medium_grey" />
     </visual>
     <collision>
       <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -116,7 +116,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_2.STL" />
       </geometry>
-      <material name="carrier_blue" />
+      <material name="emrac_light_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -142,7 +142,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_2.STL" />
       </geometry>
-      <material name="rail_bronze" />
+      <material name="emrac_medium_grey" />
     </visual>
     <collision>
       <origin xyz="0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -170,7 +170,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_3.STL" />
       </geometry>
-      <material name="carrier_blue" />
+      <material name="emrac_light_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -196,7 +196,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_3.STL" />
       </geometry>
-      <material name="rail_bronze" />
+      <material name="emrac_medium_grey" />
     </visual>
     <collision>
       <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -224,7 +224,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/docking_4.STL" />
       </geometry>
-      <material name="carrier_blue" />
+      <material name="emrac_light_blue" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -250,7 +250,7 @@
       <geometry>
         <mesh filename="file://$(find cyclus_description)/meshes/carrier_emrac/visual/dock_arm_4.STL" />
       </geometry>
-      <material name="rail_bronze" />
+      <material name="emrac_medium_grey" />
     </visual>
     <collision>
       <origin xyz="-0.39 0 0" rpy="0 1.5707963267949 0" />
@@ -266,6 +266,144 @@
     <axis xyz="0.99999999998254 0 0" />
     <limit lower="-0.78539816339" upper="0.78539816339" effort="200.0" velocity="1.0" />
     <dynamics damping="50.0" friction="20.0" />
+  </joint>
+
+  <link name="${prefix}wheels">
+    <inertial>
+      <origin xyz="0.4104 -0.83504 -0.26012" rpy="0 0 0" />
+      <mass value="66.927" />
+      <inertia ixx="0.31187" ixy="0.027609" ixz="0.0029563" iyy="11.966" iyz="0.0098157" izz="12.157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/visual/wheels.STL" />
+      </geometry>
+      <material name="professional_blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/collision/wheels.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}wheel_joint" type="fixed">
+    <origin xyz="-0.17912238382578 -0.989570036096044 0.451850726050984" rpy="1.5707963267949 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}wheels"/>
+  </joint>
+
+  <link name="${prefix}shaft_motors">
+    <inertial>
+      <origin xyz="2.1329 -0.83955 0.040521" rpy="0 0 0" />
+      <mass value="66.927" />
+      <inertia ixx="0.31187" ixy="0.027609" ixz="0.0029563" iyy="11.966" iyz="0.0098157" izz="12.157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/visual/shaft_motors.STL" />
+      </geometry>
+      <material name="deep_purple_semi">
+        <color rgba="0.30 0.12 0.45 0.8" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/collision/shaft_motors.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}shaft_motors_joint" type="fixed">
+    <origin xyz="-1.90167019372611 -0.688928868898414 0.456357618202888" rpy="1.5707963267949 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}shaft_motors"/>
+  </joint>
+
+  <link name="${prefix}shaft_pos">
+    <inertial>
+      <origin xyz="2.1329 -0.83955 0.040521" rpy="0 0 0" />
+      <mass value="66.927" />
+      <inertia ixx="0.31187" ixy="0.027609" ixz="0.0029563" iyy="11.966" iyz="0.0098157" izz="12.157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/visual/shaft_pos.STL" />
+      </geometry>
+      <material name="violet_semi">
+        <color rgba="0.58 0.40 0.74 0.7" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/collision/shaft_pos.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}shaft_pos_joint" type="fixed">
+    <origin xyz="-1.90167019372611 -0.688928868898414 0.456357618202888" rpy="1.5707963267949 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}shaft_pos"/>
+  </joint>
+
+  <link name="${prefix}support_block_pos">
+    <inertial>
+      <origin xyz="2.1329 -0.83955 0.040521" rpy="0 0 0" />
+      <mass value="66.927" />
+      <inertia ixx="0.31187" ixy="0.027609" ixz="0.0029563" iyy="11.966" iyz="0.0098157" izz="12.157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/visual/support_block_pos.STL" />
+      </geometry>
+      <material name="deep_red_semi">
+        <color rgba="0.55 0.08 0.08 0.6" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/collision/support_block_pos.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}suppott_block_joint" type="fixed">
+    <origin xyz="-1.90167019372611 -0.688928868898414 0.456357618202888" rpy="1.5707963267949 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}support_block_pos"/>
+  </joint>
+
+  <link name="${prefix}blots_pos">
+    <inertial>
+      <origin xyz="2.1329 -0.83955 0.040521" rpy="0 0 0" />
+      <mass value="66.927" />
+      <inertia ixx="0.31187" ixy="0.027609" ixz="0.0029563" iyy="11.966" iyz="0.0098157" izz="12.157" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/visual/blots_pos.STL" />
+      </geometry>
+      <material name="bright_orange_semi">
+        <color rgba="0.90 0.45 0.10 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find cyclus_description)/meshes/emrac_body_revised/collision/blots_pos.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}blots_pos_joint" type="fixed">
+    <origin xyz="-1.90167019372611 -0.688928868898414 0.456357618202888" rpy="1.5707963267949 0 0" />
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}blots_pos"/>
   </joint>
 
   <link name="${prefix}lift_plate_carrier">
