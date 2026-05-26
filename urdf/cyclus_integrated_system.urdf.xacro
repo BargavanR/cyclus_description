@@ -18,7 +18,7 @@
   <xacro:arg name="ground_rails_mount_z" default="0.5" />
   <xacro:arg name="tesla_mount_x" default="1.6" />
   <xacro:arg name="tesla_mount_y" default="2.2" />
-  <xacro:arg name="tesla_mount_z" default="0.6" />
+  <xacro:arg name="tesla_mount_z" default="0.9" />
   <xacro:arg name="tesla_mount_roll" default="1.570796" />
   <xacro:arg name="tesla_mount_pitch" default="0.0" />
   <xacro:arg name="tesla_mount_yaw" default="0.0" />
