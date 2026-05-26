@@ -46,6 +46,17 @@ def generate_launch_description():
         ],
     )
 
+    spawner_timeout_args = [
+        '--controller-manager',
+        '/controller_manager',
+        '--controller-manager-timeout',
+        '120',
+        '--service-call-timeout',
+        '120',
+        '--switch-timeout',
+        '120',
+    ]
+
     joint_state_broadcaster_spawner = TimerAction(
         period=4.0,
         actions=[
@@ -53,7 +64,7 @@ def generate_launch_description():
                 package='controller_manager',
                 executable='spawner',
                 output='screen',
-                arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager'],
+                arguments=['joint_state_broadcaster', *spawner_timeout_args],
             )
         ],
     )
@@ -65,7 +76,7 @@ def generate_launch_description():
                 package='controller_manager',
                 executable='spawner',
                 output='screen',
-                arguments=['arm_position_controller', '--controller-manager', '/controller_manager'],
+                arguments=['arm_position_controller', *spawner_timeout_args],
             )
         ],
     )

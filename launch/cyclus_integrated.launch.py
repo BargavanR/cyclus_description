@@ -56,42 +56,51 @@ def generate_launch_description():
         ],
     )
 
+    spawner_timeout_args = [
+        '--controller-manager',
+        '/controller_manager',
+        '--controller-manager-timeout',
+        '120',
+        '--service-call-timeout',
+        '120',
+        '--switch-timeout',
+        '120',
+    ]
+
     joint_state_broadcaster_spawner = TimerAction(
-        period=10.0,
+        period=12.0,
         actions=[
             Node(
                 package='controller_manager',
                 executable='spawner',
                 output='screen',
-                arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager'],
+                arguments=['joint_state_broadcaster', *spawner_timeout_args],
             )
         ],
     )
 
-    spawner_specs = [
-        (12.0, 'emrac_1_planar_controller'),
-        (14.0, 'emrac_2_planar_controller'),
-        (16.0, 'emrac_3_planar_controller'),
-        (18.0, 'emrac_4_planar_controller'),
-        (20.0, 'emrac_1_arm_controller'),
-        (22.0, 'emrac_2_arm_controller'),
-        (24.0, 'emrac_3_arm_controller'),
-        (26.0, 'emrac_4_arm_controller'),
+    controller_names = [
+        'emrac_1_planar_controller',
+        'emrac_2_planar_controller',
+        'emrac_3_planar_controller',
+        'emrac_4_planar_controller',
+        'emrac_1_arm_controller',
+        'emrac_2_arm_controller',
+        'emrac_3_arm_controller',
+        'emrac_4_arm_controller',
     ]
-    controller_spawners = [
-        TimerAction(
-            period=period,
-            actions=[
-                Node(
-                    package='controller_manager',
-                    executable='spawner',
-                    output='screen',
-                    arguments=[controller_name, '--controller-manager', '/controller_manager'],
-                )
-            ],
-        )
-        for period, controller_name in spawner_specs
-    ]
+
+    controller_spawners = TimerAction(
+        period=22.0,
+        actions=[
+            Node(
+                package='controller_manager',
+                executable='spawner',
+                output='screen',
+                arguments=[*controller_names, *spawner_timeout_args, '--activate-as-group'],
+            )
+        ],
+    )
 
     planar_cmd_bridge = Node(
         package='cyclus_description',
@@ -125,7 +134,7 @@ def generate_launch_description():
         spawn_entity,
         ros_gz_bridge,
         joint_state_broadcaster_spawner,
-        *controller_spawners,
+        controller_spawners,
         planar_cmd_bridge,
         arm_deg_cmd_bridge,
     ])
