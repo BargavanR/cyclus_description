@@ -16,6 +16,7 @@
   <depend>position_controllers</depend>
   <depend>rclpy</depend>
   <depend>robot_state_publisher</depend>
+  <depend>ros_gz_bridge</depend>
   <depend>ros_gz_sim</depend>
   <depend>std_msgs</depend>
   <depend>xacro</depend>

@@ -15,6 +15,8 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('cyclus_description')
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_showcase.world.sdf'])
+    gui_config = PathJoinSubstitution([pkg_share, 'config', 'gui.config'])
+    bridge_config = PathJoinSubstitution([pkg_share, 'config', 'bridge.yaml'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_integrated_system.urdf.xacro'])
     emrac_axis_1_xyz = LaunchConfiguration('emrac_axis_1_xyz')
     emrac_axis_2_xyz = LaunchConfiguration('emrac_axis_2_xyz')
@@ -32,7 +34,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ]),
-        launch_arguments={'gz_args': ['-r ', world]}.items(),
+        launch_arguments={'gz_args': ['-r ', world, ' --gui-config ', gui_config]}.items(),
     )
 
     robot_state_publisher = Node(
@@ -103,6 +105,17 @@ def generate_launch_description():
         output='screen',
     )
 
+    ros_gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        output='screen',
+        arguments=[
+            '--ros-args',
+            '-p',
+            ['config_file:=', bridge_config],
+        ],
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('emrac_axis_1_xyz', default_value='1,0,0'),
         DeclareLaunchArgument('emrac_axis_2_xyz', default_value='0,0,-1'),
@@ -110,6 +123,7 @@ def generate_launch_description():
         gz_sim,
         robot_state_publisher,
         spawn_entity,
+        ros_gz_bridge,
         joint_state_broadcaster_spawner,
         *controller_spawners,
         planar_cmd_bridge,

@@ -14,6 +14,8 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('cyclus_description')
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_showcase.world.sdf'])
+    gui_config = PathJoinSubstitution([pkg_share, 'config', 'gui.config'])
+    bridge_config = PathJoinSubstitution([pkg_share, 'config', 'bridge.yaml'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'cyclus_stationary_scene.urdf.xacro'])
     structure_gap_mm = LaunchConfiguration('structure_gap_mm')
 
@@ -23,7 +25,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ]),
-        launch_arguments={'gz_args': ['-r ', world]}.items(),
+        launch_arguments={'gz_args': ['-r ', world, ' --gui-config ', gui_config]}.items(),
     )
 
     robot_state_publisher = Node(
@@ -45,9 +47,21 @@ def generate_launch_description():
         ],
     )
 
+    ros_gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        output='screen',
+        arguments=[
+            '--ros-args',
+            '-p',
+            ['config_file:=', bridge_config],
+        ],
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('structure_gap_mm', default_value='1932.0'),
         gz_sim,
         robot_state_publisher,
         spawn_entity,
+        ros_gz_bridge,
     ])

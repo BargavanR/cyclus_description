@@ -14,6 +14,8 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     pkg_share = FindPackageShare('cyclus_description')
     world = PathJoinSubstitution([pkg_share, 'worlds', 'cyclus_showcase.world.sdf'])
+    gui_config = PathJoinSubstitution([pkg_share, 'config', 'gui.config'])
+    bridge_config = PathJoinSubstitution([pkg_share, 'config', 'bridge.yaml'])
     xacro_file = PathJoinSubstitution([pkg_share, 'urdf', 'emrac_body.urdf.xacro'])
 
     robot_description = Command(['xacro ', xacro_file])
@@ -22,7 +24,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ]),
-        launch_arguments={'gz_args': ['-r ', world]}.items(),
+        launch_arguments={'gz_args': ['-r ', world, ' --gui-config ', gui_config]}.items(),
     )
 
     robot_state_publisher = Node(
@@ -74,10 +76,22 @@ def generate_launch_description():
         output='screen',
     )
 
+    ros_gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        output='screen',
+        arguments=[
+            '--ros-args',
+            '-p',
+            ['config_file:=', bridge_config],
+        ],
+    )
+
     return LaunchDescription([
         gz_sim,
         robot_state_publisher,
         spawn_entity,
+        ros_gz_bridge,
         joint_state_broadcaster_spawner,
         arm_position_controller_spawner,
         arm_deg_cmd_bridge,
